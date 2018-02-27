@@ -117,7 +117,8 @@ testem.log
 .DS_Store
 
 
-#custom
-hibernate.cfg.xml
+# custom
+pom.properties
+target/
 
 # End of https://www.gitignore.io/api/angular

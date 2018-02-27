@@ -119,6 +119,9 @@ testem.log
 
 # custom
 pom.properties
+*/target
+/target
 target/
+target/*
 
 # End of https://www.gitignore.io/api/angular

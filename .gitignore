@@ -117,9 +117,8 @@ testem.log
 .DS_Store
 
 
-#custom
+# custom
 pom.properties
-/META-INF/*
-/target/*
+target/
 
 # End of https://www.gitignore.io/api/angular

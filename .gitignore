@@ -118,6 +118,5 @@ testem.log
 
 
 #custom
-hibernate.cfg.xml
 
 # End of https://www.gitignore.io/api/angular

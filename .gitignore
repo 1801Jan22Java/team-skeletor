@@ -120,5 +120,6 @@ testem.log
 #custom
 pom.properties
 /META-INF/*
+target/*
 
 # End of https://www.gitignore.io/api/angular

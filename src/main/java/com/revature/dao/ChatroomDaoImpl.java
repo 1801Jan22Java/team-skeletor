@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.revature.beans.Chatroom;
-import com.revature.domain.Bat;
 import com.revature.util.HibernateUtil;
 
 public class ChatroomDaoImpl implements ChatroomDao {

@@ -5,10 +5,13 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author jacob
  *
  */
+@Component(value="message")
 @Entity
 @Table(name = "MESSAGE")
 public class Message implements Serializable, Comparable<Message> {
@@ -17,14 +20,14 @@ public class Message implements Serializable, Comparable<Message> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MessageSequence")
 	@SequenceGenerator(allocationSize = 1, name = "MessageSequence", sequenceName = "SQ_MESSAGE_PK")
-	@Column(name = "ANIMAL_ID")
+	@Column(name = "MESSAGE_ID")
 	private int id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID")
 	private User user;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ROOM_ID")
 	private Chatroom room;
 

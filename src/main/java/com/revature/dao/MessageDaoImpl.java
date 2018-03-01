@@ -38,8 +38,8 @@ public class MessageDaoImpl implements MessageDao {
 		Session s = HibernateUtil.getSession();
 
 		Criteria c = s.createCriteria(Message.class);
-		List<Message> list = c.list();
-
+		List<Message> list =  c.list();
+		
 		s.close();
 		return list;
 	}

@@ -15,19 +15,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.beans.Message;
 import com.revature.dao.MessageDaoImpl;
+import com.revature.service.MessageService;
 
 @Controller("messageController")
 @RequestMapping("/message")
 public class MessageController {
 	
 	@Autowired
-	MessageDaoImpl messageDaoImpl;
+	MessageService messageService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Message> getMessageById(@PathVariable int id){
 		ResponseEntity<Message> resp = null;
 		
-		Message msg = messageDaoImpl.getMessageById(id);
+		Message msg = messageService.getMessageById(id);
 		if (msg == null) {
 			resp = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
@@ -40,12 +41,12 @@ public class MessageController {
 	
 	@PostMapping("/addMessage")
 	@ResponseBody
-	public ResponseEntity<String> addTRex(@RequestBody Message message) {
+	public ResponseEntity<String> createMessage(@RequestBody Message message) {
 
 		ResponseEntity<String> resp = null;
 		System.out.println(message.toString());
 		try {
-			messageDaoImpl.createMessage(message);;
+			messageService.createMessage(message);;
 			resp = new ResponseEntity<>(message.toString(), HttpStatus.OK);
 		} catch (Exception e) {
 			resp = new ResponseEntity<>("failed to add message",
@@ -60,7 +61,7 @@ public class MessageController {
 	public ResponseEntity<List<Message>> getMessageByChatroomId(@PathVariable int id){
 		ResponseEntity<List<Message>> resp = null;
 		
-		List<Message> msg = messageDaoImpl.getMessagesByChatroomId(id);
+		List<Message> msg = messageService.getMessagesByChatroomId(id);
 		if (msg == null) {
 			resp = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
@@ -70,5 +71,18 @@ public class MessageController {
 		return resp;
 		
 	}
+	
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<String> deleteMessage(@PathVariable int id){
+		
+		
+		messageService.deleteMessage(id);
+		
+
+		return new ResponseEntity<>("Message Deleted", HttpStatus.OK);
+		
+	}
+	
+	
 	
 }

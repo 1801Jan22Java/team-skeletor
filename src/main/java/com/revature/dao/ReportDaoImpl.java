@@ -6,10 +6,12 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Component;
 
 import com.revature.beans.Report;
 import com.revature.util.HibernateUtil;
 
+@Component
 public class ReportDaoImpl implements ReportDao{
 
 	public List<Report> viewAllReports() {
@@ -24,7 +26,7 @@ public class ReportDaoImpl implements ReportDao{
 	public List<Report> viewReportsByMessageId(int messageId) {
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(Report.class);
-		c.add(Restrictions.eq("MESSAGE_ID", messageId));
+		c.add(Restrictions.eq("message.id", messageId));
 		List<Report> messageReports = c.list();
 		s.close();
 		return messageReports;
@@ -49,9 +51,11 @@ public class ReportDaoImpl implements ReportDao{
 	// Not sure if we want to actually delete the report or just have it contain a status saying it has been resolved.
 	public void deleteReport(int reportId) {
 		Session s = HibernateUtil.getSession();
-		Report reportObj = new Report();
-		reportObj.setId(reportId);
-		s.delete(reportObj);		
+		Transaction t = s.beginTransaction();
+		Report reportObj = (Report) s.get(Report.class, reportId);
+		s.delete(reportObj);
+		t.commit();
+		s.close();
 	}
 	
 }

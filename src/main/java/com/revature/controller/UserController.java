@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -96,19 +97,9 @@ public class UserController {
 		return response;
 	}
 	
-	@PostMapping("/getUsers")
+	@GetMapping("/getUsers")
 	@ResponseBody
-	public ResponseEntity<String> getUsers(){
-		ResponseEntity<String> response = null;
-		List<User> users = userService.getUsers();
-		System.out.println(users.toString());
-		try {
-			userService.getUsers();
-			response= new ResponseEntity<>(users.toString(),HttpStatus.OK);
-		}
-		catch(Exception e) {
-			response = new ResponseEntity<>("failed to get users", HttpStatus.BAD_REQUEST);
-		}
-		return response;
+	public ResponseEntity<List<User>> getUsers(){
+		return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
 	}
 }

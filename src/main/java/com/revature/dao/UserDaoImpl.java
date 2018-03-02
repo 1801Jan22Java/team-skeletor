@@ -1,22 +1,26 @@
 package com.revature.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Component;
 
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
+@Component(value="userDaoImpl")
 public class UserDaoImpl implements UserDao {
 
 	public List<User> getUsers() {
 		Session s = HibernateUtil.getSession();
-		List<User> users = s.createQuery("from Users").list();
+		List<User> users =s.createCriteria(User.class).list();
+		//Query query = s.createQuery("from Users");
+		//List<User> users=query.list();
 		for(User u: users) {
 			System.out.println(u);
 		}

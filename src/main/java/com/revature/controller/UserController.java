@@ -23,10 +23,23 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
 	public ResponseEntity<User> getUserById(@PathVariable int id) {
 		ResponseEntity<User> response = null;
 		User user = userService.getUserById(id);
+		if (user == null) {
+			response = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} else {
+			response = new ResponseEntity<>(user, HttpStatus.OK);
+		}
+		return response;
+	}
+	
+	@RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
+	public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+		ResponseEntity<User> response = null;
+		User user = userService.getUserByUsername(username);
 		if (user == null) {
 			response = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
@@ -97,7 +110,7 @@ public class UserController {
 		return response;
 	}
 	
-	@GetMapping("/getUsers")
+	@GetMapping("/user/all")
 	@ResponseBody
 	public ResponseEntity<List<User>> getUsers(){
 		return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);

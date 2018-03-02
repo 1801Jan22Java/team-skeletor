@@ -1559,3 +1559,255 @@ line 1:8: unexpected token: *
 2018-03-01 19:25:00 INFO  Configuration:2075 - HHH000043: Configuring from resource: hibernate.cfg.xml
 2018-03-01 19:25:00 INFO  Configuration:2094 - HHH000040: Configuration resource: hibernate.cfg.xml
 2018-03-01 19:25:00 INFO  Configuration:2216 - HHH000041: Configured SessionFactory: null
+2018-03-01 21:07:58 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2018-03-01 21:07:58 INFO  Version:54 - HHH000412: Hibernate Core {4.3.11.Final}
+2018-03-01 21:07:58 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2018-03-01 21:07:58 INFO  Environment:346 - HHH000021: Bytecode provider name : javassist
+2018-03-01 21:07:58 INFO  Configuration:2075 - HHH000043: Configuring from resource: hibernate.cfg.xml
+2018-03-01 21:07:58 INFO  Configuration:2094 - HHH000040: Configuration resource: hibernate.cfg.xml
+2018-03-01 21:07:58 INFO  Configuration:2216 - HHH000041: Configured SessionFactory: null
+2018-03-01 21:56:43 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2018-03-01 21:56:43 INFO  Version:54 - HHH000412: Hibernate Core {4.3.11.Final}
+2018-03-01 21:56:43 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2018-03-01 21:56:43 INFO  Environment:346 - HHH000021: Bytecode provider name : javassist
+2018-03-01 21:56:43 INFO  Configuration:2075 - HHH000043: Configuring from resource: hibernate.cfg.xml
+2018-03-01 21:56:43 INFO  Configuration:2094 - HHH000040: Configuration resource: hibernate.cfg.xml
+2018-03-01 21:56:43 INFO  Configuration:2216 - HHH000041: Configured SessionFactory: null
+2018-03-01 21:56:43 WARN  DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-03-01 21:56:43 INFO  DriverManagerConnectionProviderImpl:166 - HHH000401: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@boylesdemo.cewwysudyuaa.us-east-1.rds.amazonaws.com:1521:ORCL]
+2018-03-01 21:56:43 INFO  DriverManagerConnectionProviderImpl:175 - HHH000046: Connection properties: {user=jaboyles, password=****}
+2018-03-01 21:56:43 INFO  DriverManagerConnectionProviderImpl:180 - HHH000006: Autocommit mode: false
+2018-03-01 21:56:43 INFO  DriverManagerConnectionProviderImpl:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-03-01 21:56:44 INFO  Dialect:145 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-03-01 21:56:44 INFO  TransactionFactoryInitiator:62 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-03-01 21:56:44 INFO  ASTQueryTranslatorFactory:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-03-01 21:56:44 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2018-03-01 21:56:44 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2018-03-01 21:56:45 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2018-03-01 21:56:45 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.CHATROOM
+2018-03-01 21:56:45 INFO  TableMetadata:66 - HHH000037: Columns: [chatroom_name, id]
+2018-03-01 21:56:45 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 21:56:45 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005766]
+2018-03-01 21:56:46 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.MESSAGE
+2018-03-01 21:56:46 INFO  TableMetadata:66 - HHH000037: Columns: [room_id, user_id, date_created, image_url, message_id, message]
+2018-03-01 21:56:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_59b6vxhgptaheg8c1bs4r8df8, fk_t8s9kd5oa0uqr15v9n0tumawr]
+2018-03-01 21:56:46 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005768]
+2018-03-01 21:56:46 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.REPORTS
+2018-03-01 21:56:46 INFO  TableMetadata:66 - HHH000037: Columns: [user_id, message_id, id]
+2018-03-01 21:56:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_71gpl9a9ieqjc8obtul0x2n9h, fk_kbto07wvbo2i3p0f4uaa3eiol]
+2018-03-01 21:56:46 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005775]
+2018-03-01 21:56:46 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.USERS
+2018-03-01 21:56:46 INFO  TableMetadata:66 - HHH000037: Columns: [is_admin, password, email_address, is_active, id, image_id, username]
+2018-03-01 21:56:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 21:56:46 INFO  TableMetadata:69 - HHH000126: Indexes: [uk_m4f38u2e5f77torc836fi7pf2, sys_c005770]
+2018-03-01 21:56:46 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2018-03-01 21:59:15 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2018-03-01 21:59:15 INFO  Version:54 - HHH000412: Hibernate Core {4.3.11.Final}
+2018-03-01 21:59:15 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2018-03-01 21:59:15 INFO  Environment:346 - HHH000021: Bytecode provider name : javassist
+2018-03-01 21:59:15 INFO  Configuration:2075 - HHH000043: Configuring from resource: hibernate.cfg.xml
+2018-03-01 21:59:15 INFO  Configuration:2094 - HHH000040: Configuration resource: hibernate.cfg.xml
+2018-03-01 21:59:15 INFO  Configuration:2216 - HHH000041: Configured SessionFactory: null
+2018-03-01 21:59:15 WARN  DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-03-01 21:59:15 INFO  DriverManagerConnectionProviderImpl:166 - HHH000401: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@boylesdemo.cewwysudyuaa.us-east-1.rds.amazonaws.com:1521:ORCL]
+2018-03-01 21:59:15 INFO  DriverManagerConnectionProviderImpl:175 - HHH000046: Connection properties: {user=jaboyles, password=****}
+2018-03-01 21:59:15 INFO  DriverManagerConnectionProviderImpl:180 - HHH000006: Autocommit mode: false
+2018-03-01 21:59:15 INFO  DriverManagerConnectionProviderImpl:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-03-01 21:59:16 INFO  Dialect:145 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-03-01 21:59:17 INFO  TransactionFactoryInitiator:62 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-03-01 21:59:17 INFO  ASTQueryTranslatorFactory:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-03-01 21:59:17 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2018-03-01 21:59:17 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2018-03-01 21:59:17 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2018-03-01 21:59:18 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.CHATROOM
+2018-03-01 21:59:18 INFO  TableMetadata:66 - HHH000037: Columns: [chatroom_name, id]
+2018-03-01 21:59:18 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 21:59:18 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005766]
+2018-03-01 21:59:18 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.MESSAGE
+2018-03-01 21:59:18 INFO  TableMetadata:66 - HHH000037: Columns: [room_id, user_id, date_created, image_url, message_id, message]
+2018-03-01 21:59:18 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_59b6vxhgptaheg8c1bs4r8df8, fk_t8s9kd5oa0uqr15v9n0tumawr]
+2018-03-01 21:59:18 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005768]
+2018-03-01 21:59:18 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.REPORTS
+2018-03-01 21:59:18 INFO  TableMetadata:66 - HHH000037: Columns: [user_id, message_id, id]
+2018-03-01 21:59:18 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_71gpl9a9ieqjc8obtul0x2n9h, fk_kbto07wvbo2i3p0f4uaa3eiol]
+2018-03-01 21:59:18 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005775]
+2018-03-01 21:59:18 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.USERS
+2018-03-01 21:59:18 INFO  TableMetadata:66 - HHH000037: Columns: [is_admin, password, email_address, is_active, id, image_id, username]
+2018-03-01 21:59:18 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 21:59:18 INFO  TableMetadata:69 - HHH000126: Indexes: [uk_m4f38u2e5f77torc836fi7pf2, sys_c005770]
+2018-03-01 21:59:18 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2018-03-01 21:59:27 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2018-03-01 21:59:27 INFO  Version:54 - HHH000412: Hibernate Core {4.3.11.Final}
+2018-03-01 21:59:27 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2018-03-01 21:59:27 INFO  Environment:346 - HHH000021: Bytecode provider name : javassist
+2018-03-01 21:59:27 INFO  Configuration:2075 - HHH000043: Configuring from resource: hibernate.cfg.xml
+2018-03-01 21:59:27 INFO  Configuration:2094 - HHH000040: Configuration resource: hibernate.cfg.xml
+2018-03-01 21:59:27 INFO  Configuration:2216 - HHH000041: Configured SessionFactory: null
+2018-03-01 21:59:27 WARN  DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-03-01 21:59:27 INFO  DriverManagerConnectionProviderImpl:166 - HHH000401: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@boylesdemo.cewwysudyuaa.us-east-1.rds.amazonaws.com:1521:ORCL]
+2018-03-01 21:59:27 INFO  DriverManagerConnectionProviderImpl:175 - HHH000046: Connection properties: {user=jaboyles, password=****}
+2018-03-01 21:59:27 INFO  DriverManagerConnectionProviderImpl:180 - HHH000006: Autocommit mode: false
+2018-03-01 21:59:27 INFO  DriverManagerConnectionProviderImpl:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-03-01 21:59:28 INFO  Dialect:145 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-03-01 21:59:28 INFO  TransactionFactoryInitiator:62 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-03-01 21:59:28 INFO  ASTQueryTranslatorFactory:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-03-01 21:59:28 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2018-03-01 21:59:28 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2018-03-01 21:59:29 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2018-03-01 21:59:29 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.CHATROOM
+2018-03-01 21:59:29 INFO  TableMetadata:66 - HHH000037: Columns: [chatroom_name, id]
+2018-03-01 21:59:29 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 21:59:29 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005766]
+2018-03-01 21:59:29 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.MESSAGE
+2018-03-01 21:59:29 INFO  TableMetadata:66 - HHH000037: Columns: [room_id, user_id, date_created, image_url, message_id, message]
+2018-03-01 21:59:29 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_59b6vxhgptaheg8c1bs4r8df8, fk_t8s9kd5oa0uqr15v9n0tumawr]
+2018-03-01 21:59:29 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005768]
+2018-03-01 21:59:29 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.REPORTS
+2018-03-01 21:59:29 INFO  TableMetadata:66 - HHH000037: Columns: [user_id, message_id, id]
+2018-03-01 21:59:29 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_71gpl9a9ieqjc8obtul0x2n9h, fk_kbto07wvbo2i3p0f4uaa3eiol]
+2018-03-01 21:59:29 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005775]
+2018-03-01 21:59:30 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.USERS
+2018-03-01 21:59:30 INFO  TableMetadata:66 - HHH000037: Columns: [is_admin, password, email_address, is_active, id, image_id, username]
+2018-03-01 21:59:30 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 21:59:30 INFO  TableMetadata:69 - HHH000126: Indexes: [uk_m4f38u2e5f77torc836fi7pf2, sys_c005770]
+2018-03-01 21:59:30 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2018-03-01 22:00:28 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2018-03-01 22:00:28 INFO  Version:54 - HHH000412: Hibernate Core {4.3.11.Final}
+2018-03-01 22:00:28 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2018-03-01 22:00:28 INFO  Environment:346 - HHH000021: Bytecode provider name : javassist
+2018-03-01 22:00:28 INFO  Configuration:2075 - HHH000043: Configuring from resource: hibernate.cfg.xml
+2018-03-01 22:00:28 INFO  Configuration:2094 - HHH000040: Configuration resource: hibernate.cfg.xml
+2018-03-01 22:00:28 INFO  Configuration:2216 - HHH000041: Configured SessionFactory: null
+2018-03-01 22:00:28 WARN  DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-03-01 22:00:28 INFO  DriverManagerConnectionProviderImpl:166 - HHH000401: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@boylesdemo.cewwysudyuaa.us-east-1.rds.amazonaws.com:1521:ORCL]
+2018-03-01 22:00:28 INFO  DriverManagerConnectionProviderImpl:175 - HHH000046: Connection properties: {user=jaboyles, password=****}
+2018-03-01 22:00:28 INFO  DriverManagerConnectionProviderImpl:180 - HHH000006: Autocommit mode: false
+2018-03-01 22:00:28 INFO  DriverManagerConnectionProviderImpl:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-03-01 22:00:32 INFO  Dialect:145 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-03-01 22:00:32 INFO  TransactionFactoryInitiator:62 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-03-01 22:00:32 INFO  ASTQueryTranslatorFactory:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-03-01 22:00:32 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2018-03-01 22:00:32 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2018-03-01 22:00:35 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2018-03-01 22:00:53 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.CHATROOM
+2018-03-01 22:00:53 INFO  TableMetadata:66 - HHH000037: Columns: [chatroom_name, id]
+2018-03-01 22:00:53 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 22:00:53 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005766]
+2018-03-01 22:01:11 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.MESSAGE
+2018-03-01 22:01:11 INFO  TableMetadata:66 - HHH000037: Columns: [room_id, user_id, date_created, image_url, message_id, message]
+2018-03-01 22:01:11 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_59b6vxhgptaheg8c1bs4r8df8, fk_t8s9kd5oa0uqr15v9n0tumawr]
+2018-03-01 22:01:11 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005768]
+2018-03-01 22:01:29 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.REPORTS
+2018-03-01 22:01:29 INFO  TableMetadata:66 - HHH000037: Columns: [user_id, message_id, id]
+2018-03-01 22:01:29 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_71gpl9a9ieqjc8obtul0x2n9h, fk_kbto07wvbo2i3p0f4uaa3eiol]
+2018-03-01 22:01:29 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005775]
+2018-03-01 22:01:47 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.USERS
+2018-03-01 22:01:47 INFO  TableMetadata:66 - HHH000037: Columns: [is_admin, password, email_address, is_active, id, image_id, username]
+2018-03-01 22:01:47 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 22:01:47 INFO  TableMetadata:69 - HHH000126: Indexes: [uk_m4f38u2e5f77torc836fi7pf2, sys_c005770]
+2018-03-01 22:01:47 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2018-03-01 22:06:58 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2018-03-01 22:06:58 INFO  Version:54 - HHH000412: Hibernate Core {4.3.11.Final}
+2018-03-01 22:06:58 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2018-03-01 22:06:58 INFO  Environment:346 - HHH000021: Bytecode provider name : javassist
+2018-03-01 22:06:58 INFO  Configuration:2075 - HHH000043: Configuring from resource: hibernate.cfg.xml
+2018-03-01 22:06:58 INFO  Configuration:2094 - HHH000040: Configuration resource: hibernate.cfg.xml
+2018-03-01 22:06:58 INFO  Configuration:2216 - HHH000041: Configured SessionFactory: null
+2018-03-01 22:06:58 WARN  DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-03-01 22:06:58 INFO  DriverManagerConnectionProviderImpl:166 - HHH000401: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@boylesdemo.cewwysudyuaa.us-east-1.rds.amazonaws.com:1521:ORCL]
+2018-03-01 22:06:58 INFO  DriverManagerConnectionProviderImpl:175 - HHH000046: Connection properties: {user=jaboyles, password=****}
+2018-03-01 22:06:58 INFO  DriverManagerConnectionProviderImpl:180 - HHH000006: Autocommit mode: false
+2018-03-01 22:06:58 INFO  DriverManagerConnectionProviderImpl:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-03-01 22:07:01 INFO  Dialect:145 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-03-01 22:07:01 INFO  TransactionFactoryInitiator:62 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-03-01 22:07:01 INFO  ASTQueryTranslatorFactory:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-03-01 22:07:02 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2018-03-01 22:07:02 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2018-03-01 22:07:02 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2018-03-01 22:07:03 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.CHATROOM
+2018-03-01 22:07:03 INFO  TableMetadata:66 - HHH000037: Columns: [chatroom_name, id]
+2018-03-01 22:07:03 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 22:07:03 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005766]
+2018-03-01 22:07:03 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.MESSAGE
+2018-03-01 22:07:03 INFO  TableMetadata:66 - HHH000037: Columns: [room_id, user_id, date_created, image_url, message_id, message]
+2018-03-01 22:07:03 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_59b6vxhgptaheg8c1bs4r8df8, fk_t8s9kd5oa0uqr15v9n0tumawr]
+2018-03-01 22:07:03 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005768]
+2018-03-01 22:07:03 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.REPORTS
+2018-03-01 22:07:03 INFO  TableMetadata:66 - HHH000037: Columns: [user_id, message_id, id]
+2018-03-01 22:07:03 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_71gpl9a9ieqjc8obtul0x2n9h, fk_kbto07wvbo2i3p0f4uaa3eiol]
+2018-03-01 22:07:03 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005775]
+2018-03-01 22:07:04 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.USERS
+2018-03-01 22:07:04 INFO  TableMetadata:66 - HHH000037: Columns: [is_admin, password, email_address, is_active, id, image_id, username]
+2018-03-01 22:07:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 22:07:04 INFO  TableMetadata:69 - HHH000126: Indexes: [uk_m4f38u2e5f77torc836fi7pf2, sys_c005770]
+2018-03-01 22:07:04 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2018-03-01 22:08:25 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2018-03-01 22:08:25 INFO  Version:54 - HHH000412: Hibernate Core {4.3.11.Final}
+2018-03-01 22:08:25 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2018-03-01 22:08:25 INFO  Environment:346 - HHH000021: Bytecode provider name : javassist
+2018-03-01 22:08:25 INFO  Configuration:2075 - HHH000043: Configuring from resource: hibernate.cfg.xml
+2018-03-01 22:08:25 INFO  Configuration:2094 - HHH000040: Configuration resource: hibernate.cfg.xml
+2018-03-01 22:08:25 INFO  Configuration:2216 - HHH000041: Configured SessionFactory: null
+2018-03-01 22:08:25 WARN  DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-03-01 22:08:25 INFO  DriverManagerConnectionProviderImpl:166 - HHH000401: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@boylesdemo.cewwysudyuaa.us-east-1.rds.amazonaws.com:1521:ORCL]
+2018-03-01 22:08:25 INFO  DriverManagerConnectionProviderImpl:175 - HHH000046: Connection properties: {user=jaboyles, password=****}
+2018-03-01 22:08:25 INFO  DriverManagerConnectionProviderImpl:180 - HHH000006: Autocommit mode: false
+2018-03-01 22:08:25 INFO  DriverManagerConnectionProviderImpl:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-03-01 22:08:26 INFO  Dialect:145 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-03-01 22:08:26 INFO  TransactionFactoryInitiator:62 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-03-01 22:08:26 INFO  ASTQueryTranslatorFactory:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-03-01 22:08:26 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2018-03-01 22:08:26 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2018-03-01 22:08:27 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2018-03-01 22:08:28 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.CHATROOM
+2018-03-01 22:08:28 INFO  TableMetadata:66 - HHH000037: Columns: [chatroom_name, id]
+2018-03-01 22:08:28 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 22:08:28 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005766]
+2018-03-01 22:08:28 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.MESSAGE
+2018-03-01 22:08:28 INFO  TableMetadata:66 - HHH000037: Columns: [room_id, user_id, date_created, image_url, message_id, message]
+2018-03-01 22:08:28 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_59b6vxhgptaheg8c1bs4r8df8, fk_t8s9kd5oa0uqr15v9n0tumawr]
+2018-03-01 22:08:28 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005768]
+2018-03-01 22:08:28 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.REPORTS
+2018-03-01 22:08:28 INFO  TableMetadata:66 - HHH000037: Columns: [user_id, message_id, id]
+2018-03-01 22:08:28 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_71gpl9a9ieqjc8obtul0x2n9h, fk_kbto07wvbo2i3p0f4uaa3eiol]
+2018-03-01 22:08:28 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005775]
+2018-03-01 22:08:29 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.USERS
+2018-03-01 22:08:29 INFO  TableMetadata:66 - HHH000037: Columns: [is_admin, password, email_address, is_active, id, image_id, username]
+2018-03-01 22:08:29 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 22:08:29 INFO  TableMetadata:69 - HHH000126: Indexes: [uk_m4f38u2e5f77torc836fi7pf2, sys_c005770]
+2018-03-01 22:08:29 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2018-03-01 22:08:40 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2018-03-01 22:08:40 INFO  Version:54 - HHH000412: Hibernate Core {4.3.11.Final}
+2018-03-01 22:08:40 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2018-03-01 22:08:40 INFO  Environment:346 - HHH000021: Bytecode provider name : javassist
+2018-03-01 22:08:40 INFO  Configuration:2075 - HHH000043: Configuring from resource: hibernate.cfg.xml
+2018-03-01 22:08:40 INFO  Configuration:2094 - HHH000040: Configuration resource: hibernate.cfg.xml
+2018-03-01 22:08:40 INFO  Configuration:2216 - HHH000041: Configured SessionFactory: null
+2018-03-01 22:08:40 WARN  DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-03-01 22:08:40 INFO  DriverManagerConnectionProviderImpl:166 - HHH000401: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@boylesdemo.cewwysudyuaa.us-east-1.rds.amazonaws.com:1521:ORCL]
+2018-03-01 22:08:40 INFO  DriverManagerConnectionProviderImpl:175 - HHH000046: Connection properties: {user=jaboyles, password=****}
+2018-03-01 22:08:40 INFO  DriverManagerConnectionProviderImpl:180 - HHH000006: Autocommit mode: false
+2018-03-01 22:08:40 INFO  DriverManagerConnectionProviderImpl:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-03-01 22:08:41 INFO  Dialect:145 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-03-01 22:08:42 INFO  TransactionFactoryInitiator:62 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-03-01 22:08:42 INFO  ASTQueryTranslatorFactory:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-03-01 22:08:42 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2018-03-01 22:08:42 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2018-03-01 22:08:42 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2018-03-01 22:08:43 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.CHATROOM
+2018-03-01 22:08:43 INFO  TableMetadata:66 - HHH000037: Columns: [chatroom_name, id]
+2018-03-01 22:08:43 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 22:08:43 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005766]
+2018-03-01 22:08:43 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.MESSAGE
+2018-03-01 22:08:43 INFO  TableMetadata:66 - HHH000037: Columns: [room_id, user_id, date_created, image_url, message_id, message]
+2018-03-01 22:08:43 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_59b6vxhgptaheg8c1bs4r8df8, fk_t8s9kd5oa0uqr15v9n0tumawr]
+2018-03-01 22:08:43 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005768]
+2018-03-01 22:08:44 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.REPORTS
+2018-03-01 22:08:44 INFO  TableMetadata:66 - HHH000037: Columns: [user_id, message_id, id]
+2018-03-01 22:08:44 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_71gpl9a9ieqjc8obtul0x2n9h, fk_kbto07wvbo2i3p0f4uaa3eiol]
+2018-03-01 22:08:44 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c005775]
+2018-03-01 22:08:44 INFO  TableMetadata:65 - HHH000261: Table found: JABOYLES.USERS
+2018-03-01 22:08:44 INFO  TableMetadata:66 - HHH000037: Columns: [is_admin, password, email_address, is_active, id, image_id, username]
+2018-03-01 22:08:44 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-03-01 22:08:44 INFO  TableMetadata:69 - HHH000126: Indexes: [uk_m4f38u2e5f77torc836fi7pf2, sys_c005770]
+2018-03-01 22:08:44 INFO  SchemaUpdate:267 - HHH000232: Schema update complete

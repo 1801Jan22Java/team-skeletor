@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 //Creating Users table 
-@Component
+@Component(value="user")
 @Entity
 @Table(name="USERS", uniqueConstraints=
 @UniqueConstraint (columnNames= {"ID","USERNAME"}))

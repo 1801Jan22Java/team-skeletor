@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Component;
+
 
 //Creating Users table 
+@Component
 @Entity
 @Table(name="USERS", uniqueConstraints=
 @UniqueConstraint (columnNames= {"ID","USERNAME"}))

@@ -14,5 +14,7 @@ public interface MessageDao {
 	public void deleteMessage(int msgId);
 
 	public void updateMessage(Message msg);
+	
+	public List<Message> getMessagesByChatroomId(int roomId);
 
 }

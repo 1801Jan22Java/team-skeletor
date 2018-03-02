@@ -96,11 +96,6 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.3.3.RELEASE</version>
 		</dependency>
-        <dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>4.3.3.RELEASE</version>
-		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>

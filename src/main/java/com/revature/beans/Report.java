@@ -3,9 +3,13 @@ package com.revature.beans;
 import java.io.Serializable;
 
 import javax.persistence.*;
+
+import org.springframework.stereotype.Component;
+
 import com.revature.beans.Message;
 import com.revature.beans.User;
 
+@Component(value="report")
 @Entity
 @Table(name="REPORTS")
 public class Report implements Serializable{
@@ -38,11 +42,11 @@ public class Report implements Serializable{
 	@Column(name="ID")
 	private int id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID")
 	private User user;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "MESSAGE_ID")
 	private Message message;
 	

@@ -44,9 +44,8 @@ public class MessageController {
 	public ResponseEntity<String> createMessage(@RequestBody Message message) {
 
 		ResponseEntity<String> resp = null;
-		System.out.println(message.toString());
 		try {
-			messageService.createMessage(message);;
+			messageService.createMessage(message);
 			resp = new ResponseEntity<>(message.toString(), HttpStatus.OK);
 		} catch (Exception e) {
 			resp = new ResponseEntity<>("failed to add message",

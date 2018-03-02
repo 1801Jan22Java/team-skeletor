@@ -12,8 +12,8 @@ public interface UserDao {
 	public int getUserId(User user);
 	public User getUserByUsername(String username);
 	public int addUser(User user);
-	public void deleteUser(User user);
-	public void updateUser(User user);
+	public void deleteUser(int userID);
+	public void updateUser(int userID);
 	public void banUser(Integer userID);
 	public void reactivateUser(Integer userID);
 	

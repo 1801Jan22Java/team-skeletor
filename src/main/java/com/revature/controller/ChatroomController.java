@@ -56,14 +56,15 @@ public class ChatroomController {
 	
 	@PostMapping("/addChatroom")
 	@ResponseBody
-	public ResponseEntity<String> createChatroom(@RequestBody String chatroomName) {
+	public ResponseEntity<String> createChatroom(@RequestBody Chatroom chatroom) {
 
 		ResponseEntity<String> resp = null;
-		System.out.println(chatroomName);
+		
 		try {
-			chatroomService.addChatroom(chatroomName);
-			resp = new ResponseEntity<>(chatroomName, HttpStatus.OK);
+			chatroomService.addChatroom(chatroom.getName());
+			resp = new ResponseEntity<>(chatroom.getName(), HttpStatus.OK);
 		} catch (Exception e) {
+			
 			resp = new ResponseEntity<>("failed to add chatroom",
 					HttpStatus.BAD_REQUEST);
 		}

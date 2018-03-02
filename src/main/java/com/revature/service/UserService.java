@@ -28,8 +28,9 @@ public class UserService {
 		 userDaoImpl.deleteUser(userID);
 	}
 	
-	public void getUserByUsername(String username) {
-		userDaoImpl.getUserByUsername(username);
+	public User getUserByUsername(String username) {
+		User user =userDaoImpl.getUserByUsername(username);
+		return user;
 	}
 	
 	public void updateUserPhoto(int userID, int photoID) {

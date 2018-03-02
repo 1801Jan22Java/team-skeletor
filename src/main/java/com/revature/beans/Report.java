@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.revature.beans.Message;
 import com.revature.beans.User;
 
-@Component
+@Component(value="report")
 @Entity
 @Table(name="REPORTS")
 public class Report implements Serializable{

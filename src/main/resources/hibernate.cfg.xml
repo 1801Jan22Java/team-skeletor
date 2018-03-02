@@ -16,5 +16,6 @@
 		<mapping class="com.revature.beans.Message"/>
 		<mapping class="com.revature.beans.Chatroom"/>
 		<mapping class="com.revature.beans.User"/>
+		<mapping class="com.revature.beans.Report"/>
 	</session-factory>
 </hibernate-configuration>

@@ -66,7 +66,8 @@ public class UserDaoImpl implements UserDao {
 	
 	
 
-	public void deleteUser(User user) {
+	public void deleteUser(int userID) {
+		User user= getUserById(userID);
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		s.persist(user);
@@ -75,13 +76,14 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 
-	public void updateUser(User user) {
+	
+	public void updateUser(int userID) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	public void updateUserPhoto(User user, int photoID) {
-		int userID = user.getId();
+	public void updateUserPhoto(int userID, int photoID) {
+		User user = getUserById(userID);
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		user.setProfileImageURL(photoID);
@@ -147,5 +149,7 @@ public class UserDaoImpl implements UserDao {
 		//user = udi.getUserById(1);
 		//System.out.println(user);
 	}
+
+
 
 }

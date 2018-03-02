@@ -3,8 +3,12 @@ package com.revature.beans;
 import java.io.Serializable;
 
 import javax.persistence.GeneratedValue;
+
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
+@Component(value="chatroom")
 @Entity
 @Table(name = "CHATROOM")
 public class Chatroom implements Serializable {

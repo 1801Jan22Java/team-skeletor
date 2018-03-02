@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.revature.beans.Chatroom;
 import com.revature.util.HibernateUtil;
 
-@Component(value="chatroomDaoImpl")
+@Component(value = "chatroomDaoImpl")
 public class ChatroomDaoImpl implements ChatroomDao {
 
 	public String getNameById(int id) {
@@ -40,7 +40,7 @@ public class ChatroomDaoImpl implements ChatroomDao {
 		Chatroom c = new Chatroom(name);
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
-			s.persist(c);
+		s.save(c);
 		tx.commit();
 		s.close();
 

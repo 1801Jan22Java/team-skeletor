@@ -32,7 +32,6 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public int getUserId(User user) {
-		// TODO Auto-generated method stub
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(User.class);
 		
@@ -44,7 +43,6 @@ public class UserDaoImpl implements UserDao {
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(User.class);
 		User u = (User)c.add(Restrictions.eq("username",username)).uniqueResult();
-		//List result = c.list();
 		return u;
 	}
 	
@@ -52,7 +50,6 @@ public class UserDaoImpl implements UserDao {
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(User.class);
 		List<User> users = c.add(Restrictions.eq("username",username)).list();
-		//List result = c.list();
 		return users;
 	}
 
@@ -69,13 +66,32 @@ public class UserDaoImpl implements UserDao {
 	
 	
 
-	public void deleteUser(User user) {
-		// TODO Auto-generated method stub
+	public void deleteUser(int userID) {
+		User user= getUserById(userID);
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		s.persist(user);
+		s.delete(user);
+		s.close();
 		
 	}
 
-	public void updateUser(User user) {
+	
+	public void updateUser(int userID) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void updateUserPhoto(int userID, int photoID) {
+		User user = getUserById(userID);
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		user.setProfileImageURL(photoID);
+		s.persist(user);
+		s.update(user);
+		tx.commit();
+		s.close();
+		
 		
 	}
 	
@@ -123,7 +139,8 @@ public class UserDaoImpl implements UserDao {
 	
 	public static void main(String [] args) {
 		UserDaoImpl udi = new UserDaoImpl();
-		User user = udi.getUserByUsername("Skeletor");
+		//User user = udi.getUserByUsername("Skeletor");
+		List<User> user =udi.getUsers();
 		System.out.println(user);
 		//udi.banUser(new Integer(1));
 		//User user = udi.getUserById(1);
@@ -132,5 +149,7 @@ public class UserDaoImpl implements UserDao {
 		//user = udi.getUserById(1);
 		//System.out.println(user);
 	}
+
+
 
 }

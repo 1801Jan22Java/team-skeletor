@@ -68,14 +68,6 @@ public class LoginController {
 		ResponseEntity<String> response = null;
 		try {
 			u = loginService.getUserByCredentials("skeletor", "Skelet0r");
-
-			
-		/* No longer checking if user is banned at login...
-		 * 
-		 * 	if (!u.isActive()) {
-				response = new ResponseEntity<>("User is inactive", HttpStatus.BAD_REQUEST);
-			} else {
-		 */
 				boolean isAdmin = u.isAdmin();
 				ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
 						.currentRequestAttributes();
@@ -84,12 +76,9 @@ public class LoginController {
 				session.setAttribute("isAdmin", u.isAdmin());
 				String sessUser = session.getAttribute("username").toString();
 				response = getSession();
-				// System.out.println(sessUser); //DEBUGGING
-			//}
 
 		} catch (Exception e) {
 			response = new ResponseEntity<>("failed to log in user", HttpStatus.BAD_REQUEST);
-			// u.getUsername();
 		}
 		return response;
 	}
@@ -102,11 +91,9 @@ public class LoginController {
 		HttpSession session = attr.getRequest().getSession();
 		String username = session.getAttribute("username").toString();
 		User u = loginService.getUserByUsername(username);
-		// System.out.println("In get session"); //DEBUGGING
 		if (u.isAdmin()) {
 
 			response = new ResponseEntity<>("Still logged in as " + u.getUsername() + " who is admin", HttpStatus.OK);
-			// System.out.println("In if statement"); //DEBUGGING
 		}
 		return response;
 	}

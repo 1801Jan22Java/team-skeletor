@@ -14,11 +14,11 @@ import com.revature.util.HibernateUtil;
 @Component(value = "chatroomDaoImpl")
 public class ChatroomDaoImpl implements ChatroomDao {
 
-	public String getNameById(int id) {
+	public Chatroom getChatroomById(int id) {
 		Session s = HibernateUtil.getSession();
 		Chatroom c = (Chatroom) s.get(Chatroom.class, id);
 		s.close();
-		return c.getName();
+		return c;
 	}
 
 	public void deleteChatroom(int id) {

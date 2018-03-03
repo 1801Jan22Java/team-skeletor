@@ -15,8 +15,8 @@ public class ChatroomService{
 	ChatroomDaoImpl chatroomDaoImpl;
 
 
-	public String getNameById(int id) {
-		return chatroomDaoImpl.getNameById(id);
+	public Chatroom getNameById(int id) {
+		return chatroomDaoImpl.getChatroomById(id);
 	}
 
 	

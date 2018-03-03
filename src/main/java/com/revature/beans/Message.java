@@ -77,15 +77,15 @@ public class Message implements Serializable, Comparable<Message> {
 		return user;
 	}
 
-	public void setUserId(User user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public Chatroom getRoomId() {
+	public Chatroom getRoom() {
 		return room;
 	}
 
-	public void setRoomId(Chatroom room) {
+	public void setRoom(Chatroom room) {
 		this.room = room;
 	}
 

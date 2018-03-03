@@ -8,6 +8,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 
 import com.revature.service.MessageService;
 import com.revature.service.ReportService;
+import com.revature.service.UserService;
 import com.revature.service.ChatroomService;
 import com.revature.service.LoginService;
  
@@ -42,5 +43,10 @@ public class TestContext {
     @Bean
     public LoginService loginService() {
         return Mockito.mock(LoginService.class);
+    }
+    
+    @Bean
+    public UserService userService() {
+        return Mockito.mock(UserService.class);
     }
 }

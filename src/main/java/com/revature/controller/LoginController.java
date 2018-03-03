@@ -69,13 +69,6 @@ public class LoginController {
 		try {
 			u = loginService.getUserByCredentials(username,password);
 
-			
-		/* No longer checking if user is banned at login...
-		 * 
-		 * 	if (!u.isActive()) {
-				response = new ResponseEntity<>("User is inactive", HttpStatus.BAD_REQUEST);
-			} else {
-		 */
 				boolean isAdmin = u.isAdmin();
 				ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
 						.currentRequestAttributes();

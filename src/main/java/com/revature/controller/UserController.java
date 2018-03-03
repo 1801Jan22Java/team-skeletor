@@ -99,7 +99,7 @@ public class UserController {
 	public ResponseEntity<String> reactivateUser(@RequestBody int userID){
 		ResponseEntity<String> response = null;
 		User user = userService.getUserById(userID);
-		System.out.println(user.toString());
+	//	System.out.println(user.toString());
 		try {
 			userService.reactivateUser(userID);
 			response= new ResponseEntity<>(user.toString(),HttpStatus.OK);

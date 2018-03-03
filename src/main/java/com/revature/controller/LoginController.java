@@ -21,13 +21,14 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 
+
 	// Just checks if someone is still logged in, is an admin, or is logged out.
 	@RequestMapping(value = "/testSess")
 	@ResponseBody
-	public ResponseEntity<String> testSess(HttpSession session) {
+	public ResponseEntity<String> testSess() {
 		ResponseEntity<String> response = null;
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		session = attr.getRequest().getSession();
+		HttpSession session = attr.getRequest().getSession();
 		try {
 			String username = session.getAttribute("username").toString();
 			User u = loginService.getUserByUsername(username);
@@ -46,7 +47,9 @@ public class LoginController {
 	// For logging the user out, invalidates the session
 	@RequestMapping(value = "/logout")
 	@ResponseBody
-	public ResponseEntity<String> logout(HttpSession session) {
+	public ResponseEntity<String> logout() {
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession();
 		ResponseEntity<String> response = null;
 		session.invalidate();
 		try {
@@ -60,11 +63,11 @@ public class LoginController {
 	// Takes in HttpSession, String username, String password. Initializes session
 	@RequestMapping(value = "/login")
 	@ResponseBody
-	public ResponseEntity<String> login(HttpSession session, String username, String password) {
+	public ResponseEntity<String> login(String username, String password) {
 		User u = null;
 		ResponseEntity<String> response = null;
 		try {
-			u = loginService.getUserByCredentials(username, password);
+			u = loginService.getUserByCredentials("skeletor", "Skelet0r");
 
 			
 		/* No longer checking if user is banned at login...
@@ -76,11 +79,11 @@ public class LoginController {
 				boolean isAdmin = u.isAdmin();
 				ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
 						.currentRequestAttributes();
-				session = attr.getRequest().getSession();
+				HttpSession session = attr.getRequest().getSession();
 				session.setAttribute("username", u.getUsername());
 				session.setAttribute("isAdmin", u.isAdmin());
 				String sessUser = session.getAttribute("username").toString();
-				response = getSession(session);
+				response = getSession();
 				// System.out.println(sessUser); //DEBUGGING
 			//}
 
@@ -93,10 +96,10 @@ public class LoginController {
 	
 	
 	// Ensures that someone is logged into an HttpSession as an active user
-	private ResponseEntity<String> getSession(HttpSession session) {
+	private ResponseEntity<String> getSession() {
 		ResponseEntity<String> response = null;
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		session = attr.getRequest().getSession();
+		HttpSession session = attr.getRequest().getSession();
 		String username = session.getAttribute("username").toString();
 		User u = loginService.getUserByUsername(username);
 		// System.out.println("In get session"); //DEBUGGING

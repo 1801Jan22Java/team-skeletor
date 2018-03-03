@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -102,5 +103,10 @@ public class LoginController {
 			// System.out.println("In if statement"); //DEBUGGING
 		}
 		return response;
+	}
+	
+	@GetMapping(value="")
+	public String getApp(){
+		return "forward:/static/index.html";
 	}
 }

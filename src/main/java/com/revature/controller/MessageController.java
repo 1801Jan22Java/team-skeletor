@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.beans.Message;
+import com.revature.beans.MyResponseMessage;
 import com.revature.dao.MessageDaoImpl;
 import com.revature.service.MessageService;
 
@@ -39,19 +41,18 @@ public class MessageController {
 		
 	}
 	
-	@PostMapping("/addMessage")
-	@ResponseBody
-	public ResponseEntity<String> createMessage(@RequestBody Message message) {
+	@RequestMapping(value="/addMessage", method=RequestMethod.POST)
+	public ResponseEntity<MyResponseMessage> createMessage(@RequestBody Message message) {
 
-		ResponseEntity<String> resp = null;
+		ResponseEntity<MyResponseMessage> resp = null;
 		try {
 			messageService.createMessage(message);
-			resp = new ResponseEntity<>(message.toString(), HttpStatus.OK);
+			resp = new ResponseEntity<>(new MyResponseMessage("Message successfully Created"), HttpStatus.OK);
 		} catch (Exception e) {
-			resp = new ResponseEntity<>("failed to add message",
+			resp = new ResponseEntity<>(new MyResponseMessage("failed to add message"),
 					HttpStatus.BAD_REQUEST);
 		}
-
+		resp.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
 		return resp;
 
 	}
@@ -72,13 +73,13 @@ public class MessageController {
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<String> deleteMessage(@PathVariable int id){
+	public ResponseEntity<MyResponseMessage> deleteMessage(@PathVariable int id){
 		
 		
 		messageService.deleteMessage(id);
 		
 
-		return new ResponseEntity<>("Message Deleted", HttpStatus.OK);
+		return new ResponseEntity<>(new MyResponseMessage("Message Deleted"), HttpStatus.OK);
 		
 	}
 	

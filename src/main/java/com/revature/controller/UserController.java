@@ -110,7 +110,7 @@ public class UserController {
 		return response;
 	}
 	
-	@GetMapping("/user/all")
+	@GetMapping("/all")
 	@ResponseBody
 	public ResponseEntity<List<User>> getUsers(){
 		return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);

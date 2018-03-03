@@ -36,7 +36,7 @@ public class User implements Serializable{
 	private boolean isAdmin;
 	@Column (name="IS_ACTIVE")
 	private boolean isActive;
-	
+
 	
 	public User(String username, String password, String emailAddress, int imageId, boolean isAdmin,
 			boolean isActive) {
@@ -69,6 +69,13 @@ public class User implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
+	public int getImageId() {
+		return imageId;
+	}
+	public void setImageId(int imageId) {
+		this.imageId = imageId;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -109,7 +116,8 @@ public class User implements Serializable{
 	@Override
 	public String toString() {
 		return "UserID=" + id + ", Username=" + username + ", Email Address=" + emailAddress
-				+ ", Image ID=" + imageId + ", Is admin? " + isAdmin + ", Active? " + isActive + "]";
+				+ ", Image ID=" + imageId + ", Is admin? " + isAdmin 
+				+ ", Active? " + isActive + "]";
 	}
 	
 }

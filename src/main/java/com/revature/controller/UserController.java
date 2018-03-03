@@ -86,7 +86,7 @@ public class UserController {
 		System.out.println(user.toString());
 		try {
 			userService.banUser(userID);
-			response= new ResponseEntity<>(user.toString(),HttpStatus.OK);
+			response= new ResponseEntity<>("Response",HttpStatus.OK);
 		}
 		catch(Exception e) {
 			response = new ResponseEntity<>("failed to ban user", HttpStatus.BAD_REQUEST);
@@ -110,7 +110,7 @@ public class UserController {
 		return response;
 	}
 	
-	@GetMapping("/user/all")
+	@GetMapping("/all")
 	@ResponseBody
 	public ResponseEntity<List<User>> getUsers(){
 		return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);

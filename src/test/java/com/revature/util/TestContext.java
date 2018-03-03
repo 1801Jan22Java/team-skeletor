@@ -22,7 +22,7 @@ public class TestContext {
     }
  
     @Bean
-    public MessageService todoService() {
+    public MessageService messageService() {
         return Mockito.mock(MessageService.class);
     }
 }

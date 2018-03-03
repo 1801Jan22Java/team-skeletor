@@ -90,7 +90,7 @@ public class UserDaoImpl implements UserDao {
 		User user = getUserById(userID);
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
-		user.setRole("ROLE_ADMIN");
+		user.setAdmin(true);
 		s.update(user);
 		tx.commit();
 		s.close();

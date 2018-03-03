@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 import com.revature.service.MessageService;
+import com.revature.service.ReportService;
+import com.revature.service.ChatroomService;
  
 @Configuration
 public class TestContext {
@@ -24,5 +26,15 @@ public class TestContext {
     @Bean
     public MessageService messageService() {
         return Mockito.mock(MessageService.class);
+    }
+    
+    @Bean
+    public ChatroomService chatroomService() {
+        return Mockito.mock(ChatroomService.class);
+    }
+    
+    @Bean
+    public ReportService reportService() {
+        return Mockito.mock(ReportService.class);
     }
 }

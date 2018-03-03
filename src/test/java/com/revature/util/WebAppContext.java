@@ -12,6 +12,7 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+
 import java.util.Properties;
 
 @Configuration
@@ -30,7 +31,7 @@ public class WebAppContext extends WebMvcConfigurerAdapter {
 		configurer.enable();
 	}
 
-	@Bean
+	/*@Bean
 	public SimpleMappingExceptionResolver exceptionResolver() {
 		SimpleMappingExceptionResolver exceptionResolver = new SimpleMappingExceptionResolver();
 
@@ -52,9 +53,9 @@ public class WebAppContext extends WebMvcConfigurerAdapter {
 		exceptionResolver.setStatusCodes(statusCodes);
 
 		return exceptionResolver;
-	}
+	}*/
 
-	@Bean
+	/*@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 
@@ -63,5 +64,5 @@ public class WebAppContext extends WebMvcConfigurerAdapter {
 		viewResolver.setSuffix(".jsp");
 
 		return viewResolver;
-	}
+	}*/
 }

@@ -13,9 +13,7 @@ public class UserService {
 	@Autowired
 	UserDaoImpl userDaoImpl;
 	
-	public void createUser(User user) {
-		
-	}
+
 	public User getUserById(int userID) {
 		return userDaoImpl.getUserById(userID);
 	}

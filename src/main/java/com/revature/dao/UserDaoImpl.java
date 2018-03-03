@@ -86,12 +86,21 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 	
+	public void makeUserAdmin(int userID) {
+		User user = getUserById(userID);
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		user.setAdmin(true);
+		s.update(user);
+		tx.commit();
+		s.close();
+	}
+	
 	public void updateUserPhoto(int userID, int photoID) {
 		User user = getUserById(userID);
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		user.setProfileImageURL(photoID);
-		s.persist(user);
 		s.update(user);
 		tx.commit();
 		s.close();
@@ -142,16 +151,29 @@ public class UserDaoImpl implements UserDao {
 	
 	
 	public static void main(String [] args) {
-		UserDaoImpl udi = new UserDaoImpl();
+		//UserDaoImpl udi = new UserDaoImpl();
 		//User user = udi.getUserByUsername("Skeletor");
-		List<User> user =udi.getUsers();
-		System.out.println(user);
-		//udi.banUser(new Integer(1));
+		//List<User> user =udi.getUsers();
+		//System.out.println(user);
+		//udi.makeUserAdmin(1);
 		//User user = udi.getUserById(1);
 		//System.out.println(user);
 		//udi.reactivateUser(1);
 		//user = udi.getUserById(1);
 		//System.out.println(user);
+	}
+
+	@Override
+	public User getUserByCredentials(String username, String password) {
+		Session s = HibernateUtil.getSession();
+		Criteria c = s.createCriteria(User.class);
+		c.add(Restrictions.eq("username",username));
+		c.add(Restrictions.eq("password",password));
+		c.add(Restrictions.eq("isActive",true));
+		User user = (User)c.uniqueResult();
+		s.close();
+		return user;
+		
 	}
 
 

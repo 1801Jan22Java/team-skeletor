@@ -36,10 +36,12 @@ public class User implements Serializable{
 	private boolean isAdmin;
 	@Column (name="IS_ACTIVE")
 	private boolean isActive;
+	@Column (name="ROLE")
+	private String role;
 	
 	
 	public User(String username, String password, String emailAddress, int imageId, boolean isAdmin,
-			boolean isActive) {
+			boolean isActive, String role) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -47,9 +49,10 @@ public class User implements Serializable{
 		this.imageId = imageId;
 		this.isAdmin = isAdmin;
 		this.isActive = isActive;
+		this.role = role;
 	}
 	public User(int id, String username, String password, String emailAddress, int imageId, boolean isAdmin,
-			boolean isActive) {
+			boolean isActive,String role) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -58,6 +61,7 @@ public class User implements Serializable{
 		this.imageId = imageId;
 		this.isAdmin = isAdmin;
 		this.isActive = isActive;
+		this.role=role;
 	}
 	public User() {
 		super();
@@ -68,6 +72,18 @@ public class User implements Serializable{
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getImageId() {
+		return imageId;
+	}
+	public void setImageId(int imageId) {
+		this.imageId = imageId;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	public String getUsername() {
 		return username;

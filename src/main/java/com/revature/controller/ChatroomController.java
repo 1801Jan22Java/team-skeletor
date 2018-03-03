@@ -26,14 +26,14 @@ public class ChatroomController {
 	ChatroomService chatroomService;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<String> getChatroomById(@PathVariable int id){
-		ResponseEntity<String> response = null;
-		String chatroomName = chatroomService.getNameById(id);
+	public ResponseEntity<Chatroom> getChatroomById(@PathVariable int id){
+		ResponseEntity<Chatroom> response = null;
+		Chatroom chatroom = chatroomService.getNameById(id);
 		
-		if(chatroomName==null) {
+		if(chatroom==null) {
 			response = new ResponseEntity("that's not a chatroom id", HttpStatus.BAD_REQUEST);
 		} else {
-			response = new ResponseEntity(chatroomName, HttpStatus.OK);
+			response = new ResponseEntity(chatroom, HttpStatus.OK);
 		}
 		
 		return response;

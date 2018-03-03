@@ -67,7 +67,7 @@ public class LoginController {
 		User u = null;
 		ResponseEntity<String> response = null;
 		try {
-			u = loginService.getUserByCredentials("skeletor", "Skelet0r");
+			u = loginService.getUserByCredentials(username, password);
 
 			
 		/* No longer checking if user is banned at login...

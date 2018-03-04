@@ -6,17 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.revature.beans.LoginCred;
 import com.revature.beans.User;
 import com.revature.service.LoginService;
 
 @Controller("loginController")
 @RequestMapping("/login")
+@CrossOrigin(origins = "http://localhost:8084")
 public class LoginController {
 
 	@Autowired
@@ -64,11 +68,15 @@ public class LoginController {
 	// Takes in HttpSession, String username, String password. Initializes session
 	@RequestMapping(value = "/login")
 	@ResponseBody
-	public ResponseEntity<String> login(String username, String password) {
+	public ResponseEntity<User> login(@RequestBody LoginCred login) {
 		User u = null;
-		ResponseEntity<String> response = null;
+		ResponseEntity<User> response = null;
 		try {
+<<<<<<< HEAD
 			u = loginService.getUserByCredentials(username,password);
+=======
+			u = loginService.getUserByCredentials(login.getUsername(), login.getPassword());
+>>>>>>> a4b11560d8f8379b8aaa7a2c2c463ed7e032376c
 
 				boolean isAdmin = u.isAdmin();
 				ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
@@ -82,7 +90,7 @@ public class LoginController {
 			//}
 
 		} catch (Exception e) {
-			response = new ResponseEntity<>("failed to log in user", HttpStatus.BAD_REQUEST);
+			//response = new ResponseEntity<>("failed to log in user", HttpStatus.BAD_REQUEST);
 			// u.getUsername();
 		}
 		return response;
@@ -90,19 +98,18 @@ public class LoginController {
 	
 	
 	// Ensures that someone is logged into an HttpSession as an active user
-	private ResponseEntity<String> getSession() {
-		ResponseEntity<String> response = null;
+	private ResponseEntity<User> getSession() {
+		ResponseEntity<User> response = null;
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpSession session = attr.getRequest().getSession();
 		String username = session.getAttribute("username").toString();
 		User u = loginService.getUserByUsername(username);
 		// System.out.println("In get session"); //DEBUGGING
-		if (u.isAdmin()) {
 
-			response = new ResponseEntity<>("Still logged in as " + u.getUsername() + " who is admin", HttpStatus.OK);
+			 response = new ResponseEntity<>(u, HttpStatus.OK);
 			// System.out.println("In if statement"); //DEBUGGING
-		}
-		return response;
+			 return response;
+
 	}
 	
 	@GetMapping(value="")

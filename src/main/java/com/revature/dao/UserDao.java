@@ -16,6 +16,6 @@ public interface UserDao {
 	public void updateUser(int userID);
 	public void banUser(Integer userID);
 	public void reactivateUser(Integer userID);
-	
+	public User getUserByCredentials(String username, String password);
 
 }

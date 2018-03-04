@@ -6,7 +6,7 @@ import com.revature.beans.Chatroom;
 
 public interface ChatroomDao {
 
-	public String getNameById(int id);
+	public Chatroom getChatroomById(int id);
 	public void deleteChatroom(int id);
 	public void addChatroom(String name);
 	public List<Chatroom> getChatrooms();

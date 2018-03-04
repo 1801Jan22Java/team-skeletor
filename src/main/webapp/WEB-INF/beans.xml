@@ -16,5 +16,6 @@
 	<!-- enable MVC annotations -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 
+	<mvc:resources mapping="/static/**" location="/WEB-INF/static/"></mvc:resources>
 
 </beans>

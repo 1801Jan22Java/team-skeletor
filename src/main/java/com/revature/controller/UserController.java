@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.revature.service.UserService;
 
 @Controller("userController")
 @RequestMapping("/user")
+@CrossOrigin (origins="http://localhost:8084")
 public class UserController {
 
 	@Autowired
@@ -99,7 +101,7 @@ public class UserController {
 	public ResponseEntity<String> reactivateUser(@RequestBody int userID){
 		ResponseEntity<String> response = null;
 		User user = userService.getUserById(userID);
-		System.out.println(user.toString());
+	//	System.out.println(user.toString());
 		try {
 			userService.reactivateUser(userID);
 			response= new ResponseEntity<>(user.toString(),HttpStatus.OK);

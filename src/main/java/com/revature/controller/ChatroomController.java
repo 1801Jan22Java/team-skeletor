@@ -80,7 +80,7 @@ public class ChatroomController {
 		chatroomService.deleteChatroom(id);
 		
 
-		return new ResponseEntity<>("Chatroom Deleted", HttpStatus.OK);
+		return new ResponseEntity<>("Chatroom deleted", HttpStatus.OK);
 		
 	}
 }

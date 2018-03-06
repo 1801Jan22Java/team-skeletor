@@ -22,6 +22,7 @@ public class UserDaoImpl implements UserDao {
 		//Query query = s.createQuery("from Users");
 		//List<User> users=query.list();
 		for(User u: users) {
+			u.setPassword("****");
 			System.out.println(u);
 		}
 		s.close();

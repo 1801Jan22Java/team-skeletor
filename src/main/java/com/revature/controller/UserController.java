@@ -57,6 +57,11 @@ public class UserController {
 		System.out.println(user.toString());
 		try {
 			userService.addUser(user);
+			
+			//Setting password to null before user is returned in response.
+			
+			user.setPassword(null);
+			
 			response = new ResponseEntity<>(user,HttpStatus.OK);
 		} catch (Exception e) {
 			user=null;
@@ -89,7 +94,8 @@ public class UserController {
 		System.out.println(user.toString());
 		try {
 			userService.banUser(userID);
-			response= new ResponseEntity<>("Response",HttpStatus.OK);
+			
+			response= new ResponseEntity<>("User " + user.getUsername()+ " banned",HttpStatus.OK);
 		}
 		catch(Exception e) {
 			response = new ResponseEntity<>("failed to ban user", HttpStatus.BAD_REQUEST);
@@ -105,7 +111,7 @@ public class UserController {
 	//	System.out.println(user.toString());
 		try {
 			userService.reactivateUser(userID);
-			response= new ResponseEntity<>(user.toString(),HttpStatus.OK);
+			response= new ResponseEntity<>("User " + user.getUsername() + " reactivated",HttpStatus.OK);
 		}
 		catch(Exception e) {
 			response = new ResponseEntity<>("failed to reactivate user", HttpStatus.BAD_REQUEST);

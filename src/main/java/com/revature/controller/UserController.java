@@ -57,6 +57,11 @@ public class UserController {
 		System.out.println(user.toString());
 		try {
 			userService.addUser(user);
+			
+			//Setting password to null before user is returned in response.
+			
+			user.setPassword(null);
+			
 			response = new ResponseEntity<>(user,HttpStatus.OK);
 		} catch (Exception e) {
 			user=null;

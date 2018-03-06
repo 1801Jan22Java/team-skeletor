@@ -67,8 +67,6 @@ public class UserDaoImpl implements UserDao {
 		s.close();
 		return result;
 	}
-	
-	
 
 	public void deleteUser(int userID) {
 		User user= getUserById(userID);

@@ -52,14 +52,15 @@ public class UserController {
 
 	@PostMapping("/addUser")
 	@ResponseBody
-	public ResponseEntity<String> addUser(@RequestBody User user) {
-		ResponseEntity<String> response = null;
+	public ResponseEntity<User> addUser(@RequestBody User user) {
+		ResponseEntity<User> response = null;
 		System.out.println(user.toString());
 		try {
 			userService.addUser(user);
-			response = new ResponseEntity<>(user.toString(),HttpStatus.OK);
+			response = new ResponseEntity<>(user,HttpStatus.OK);
 		} catch (Exception e) {
-			response = new ResponseEntity<>("failed to add user", HttpStatus.BAD_REQUEST);
+			user=null;
+			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}

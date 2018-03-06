@@ -33,7 +33,7 @@ public class ChatroomController {
 		Chatroom chatroom = chatroomService.getNameById(id);
 		
 		if(chatroom==null) {
-			response = new ResponseEntity("that's not a chatroom id", HttpStatus.BAD_REQUEST);
+			response = new ResponseEntity(null, HttpStatus.BAD_REQUEST);
 		} else {
 			response = new ResponseEntity(chatroom, HttpStatus.OK);
 		}

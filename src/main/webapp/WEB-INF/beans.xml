@@ -17,5 +17,8 @@
 	<mvc:annotation-driven></mvc:annotation-driven>
 
 	<mvc:resources mapping="/static/**" location="/WEB-INF/static/"></mvc:resources>
+	
+	<!-- Aspect -->
+	<bean id="loggingAspect" class="com.revature.aspect.LoggingAspect" />
 
 </beans>

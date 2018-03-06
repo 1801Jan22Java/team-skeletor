@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.Chatroom;
+import com.revature.dao.ChatroomDao;
 import com.revature.dao.ChatroomDaoImpl;
 
 @Service(value="chatroomService")
 public class ChatroomService{
 
 	@Autowired
-	ChatroomDaoImpl chatroomDaoImpl;
+	ChatroomDao chatroomDaoImpl;
 
 
 	public Chatroom getNameById(int id) {

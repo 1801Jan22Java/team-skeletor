@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component(value="loggingAspect")
 @Aspect
+
 public class LoggingAspect {
 	private static Logger log = Logger.getRootLogger();
 	

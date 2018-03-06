@@ -16,18 +16,17 @@ import org.springframework.stereotype.Component;
 
 @Component(value="loggingAspect")
 @Aspect
+
 public class LoggingAspect {
 	private static Logger log = Logger.getRootLogger();
 	
 	@AfterThrowing(pointcut="within(com.revature.*.*)")
 	public void logAfterThrow(JoinPoint jp) {
-		System.out.println("Got Here");
 		log.error(jp.getSignature() + "Throwing");
 	}
 	
 	@AfterReturning(pointcut="execution(* com.revature.*.*.*(..))")
 	public void logAfterRet(JoinPoint jp) {
-		System.out.println("Got Here 2");
 		log.info(jp.getSignature());
 	}
 	

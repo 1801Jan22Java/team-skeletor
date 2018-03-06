@@ -22,6 +22,7 @@ public class UserDaoImpl implements UserDao {
 		//Query query = s.createQuery("from Users");
 		//List<User> users=query.list();
 		for(User u: users) {
+			u.setPassword("****");
 			System.out.println(u);
 		}
 		s.close();
@@ -32,6 +33,7 @@ public class UserDaoImpl implements UserDao {
 		Session s = HibernateUtil.getSession();
 		User u = (User)s.get(User.class,id);
 		s.close();
+		u.setPassword(null);
 		return u;
 	}
 
@@ -40,6 +42,7 @@ public class UserDaoImpl implements UserDao {
 		Criteria c = s.createCriteria(User.class);
 		
 		Integer id =(Integer)c.add(Restrictions.eq("username",user.getUsername())).uniqueResult();
+		
 		return id;
 	}
 
@@ -47,6 +50,7 @@ public class UserDaoImpl implements UserDao {
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(User.class);
 		User u = (User)c.add(Restrictions.eq("username",username)).uniqueResult();
+		u.setPassword(null);
 		return u;
 	}
 	
@@ -54,6 +58,7 @@ public class UserDaoImpl implements UserDao {
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(User.class);
 		List<User> users = c.add(Restrictions.eq("username",username)).list();
+		for(User u:users) {u.setUsername(null);}
 		return users;
 	}
 
@@ -67,8 +72,6 @@ public class UserDaoImpl implements UserDao {
 		s.close();
 		return result;
 	}
-	
-	
 
 	public void deleteUser(int userID) {
 		User user= getUserById(userID);

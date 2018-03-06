@@ -31,6 +31,7 @@ public class MessageDaoImpl implements MessageDao {
 		Message msg = (Message) s.get(Message.class, new Integer(msgId));
 
 		s.close();
+		msg.getUser().setPassword(null);
 		return msg;
 	}
 
@@ -41,6 +42,9 @@ public class MessageDaoImpl implements MessageDao {
 		List<Message> list =  c.list();
 		
 		s.close();
+		for (Message msg : list) {
+			msg.getUser().setPassword(null);
+		}
 		return list;
 	}
 
@@ -75,11 +79,15 @@ public class MessageDaoImpl implements MessageDao {
 
 		Criteria c = s.createCriteria(Message.class);
 		c.add(Restrictions.eq("room.id", roomId));
-		List<Message> msg = c.list();
+		List<Message> list = c.list();
 		
 		s.close();
+		
+		for (Message msg : list) {
+			msg.getUser().setPassword(null);
+		}
 
-		return msg;
+		return list;
 	}
 
 }

@@ -25,15 +25,17 @@ public class ChatroomDaoImpl implements ChatroomDao {
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		try {
-			String hql = "DELETE FROM CHATROOM WHERE ID = :id";
+			String hql = "DELETE FROM Chatroom WHERE ID = :id";
 			Query query = s.createQuery(hql);
 			query.setInteger("id", id);
 			query.executeUpdate();
 
 			tx.commit();
 		} catch (Exception t) {
+			t.printStackTrace();
 			tx.rollback();
 		}
+		s.close();
 	}
 
 	public void addChatroom(String name) {

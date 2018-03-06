@@ -7,8 +7,8 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
+@Component(value="loggingAspect")
 @Aspect
-//@Component(value="loggingAspect")
 public class LoggingAspect {
 	private static Logger log = Logger.getRootLogger();
 	
@@ -17,7 +17,7 @@ public class LoggingAspect {
 		log.error(jp.getSignature());
 	}
 	
-	@AfterReturning(pointcut="within(com.revature.*.*)")
+	@AfterReturning(pointcut="execution(* com.revature.*.*.*(..))")
 	public void logAfterRet(JoinPoint jp) {
 		log.info(jp.getSignature());
 	}

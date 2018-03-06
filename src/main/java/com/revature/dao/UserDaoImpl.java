@@ -22,6 +22,7 @@ public class UserDaoImpl implements UserDao {
 		//Query query = s.createQuery("from Users");
 		//List<User> users=query.list();
 		for(User u: users) {
+			u.setPassword("****");
 			System.out.println(u);
 		}
 		s.close();
@@ -67,8 +68,6 @@ public class UserDaoImpl implements UserDao {
 		s.close();
 		return result;
 	}
-	
-	
 
 	public void deleteUser(int userID) {
 		User user= getUserById(userID);

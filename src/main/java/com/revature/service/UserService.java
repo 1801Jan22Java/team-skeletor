@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.User;
+import com.revature.dao.UserDao;
 import com.revature.dao.UserDaoImpl;
 
 @Service(value="userService")
 public class UserService {
 	@Autowired
-	UserDaoImpl userDaoImpl;
+	UserDao userDaoImpl;
 	
 
 	public User getUserById(int userID) {

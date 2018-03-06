@@ -4,14 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.User;
+import com.revature.dao.UserDao;
 import com.revature.dao.UserDaoImpl;
 
-@Service(value="loginService")
-
-	
+@Service(value="loginService")	
 public class LoginService {
 	@Autowired
-	UserDaoImpl userDaoImpl;
+	UserDao userDaoImpl;
 	
 	public User getUserByCredentials(String username, String password){
 		return userDaoImpl.getUserByCredentials(username,password);

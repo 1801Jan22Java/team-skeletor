@@ -1,6 +1,7 @@
 package com.revature.dao;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -86,6 +87,7 @@ public class MessageDaoImpl implements MessageDao {
 		for (Message msg : list) {
 			msg.getUser().setPassword(null);
 		}
+		Collections.sort(list);
 
 		return list;
 	}

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.beans.Chatroom;
+import com.revature.beans.MyResponseMessage;
 import com.revature.service.ChatroomService;
 
 
@@ -58,16 +59,16 @@ public class ChatroomController {
 	
 	@PostMapping("/addChatroom")
 	@ResponseBody
-	public ResponseEntity<String> createChatroom(@RequestBody Chatroom chatroom) {
+	public ResponseEntity<MyResponseMessage> createChatroom(@RequestBody Chatroom chatroom) {
 
-		ResponseEntity<String> resp = null;
+		ResponseEntity<MyResponseMessage> resp = null;
 		
 		try {
 			chatroomService.addChatroom(chatroom.getName());
-			resp = new ResponseEntity<>(chatroom.getName(), HttpStatus.OK);
+			resp = new ResponseEntity<>(new MyResponseMessage(chatroom.getName()), HttpStatus.OK);
 		} catch (Exception e) {
 			
-			resp = new ResponseEntity<>("failed to add chatroom",
+			resp = new ResponseEntity<>(new MyResponseMessage("failed to add chatroom"),
 					HttpStatus.BAD_REQUEST);
 		}
 
@@ -76,13 +77,13 @@ public class ChatroomController {
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<String> deleteMessage(@PathVariable int id){
+	public ResponseEntity<MyResponseMessage> deleteMessage(@PathVariable int id){
 		
 		
 		chatroomService.deleteChatroom(id);
 		
 
-		return new ResponseEntity<>("Chatroom deleted", HttpStatus.OK);
+		return new ResponseEntity<>(new MyResponseMessage("Chatroom deleted"), HttpStatus.OK);
 		
 	}
 }

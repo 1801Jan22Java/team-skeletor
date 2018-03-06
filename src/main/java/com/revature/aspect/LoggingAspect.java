@@ -18,13 +18,11 @@ public class LoggingAspect {
 	
 	@AfterThrowing(pointcut="within(com.revature.*.*)")
 	public void logAfterThrow(JoinPoint jp) {
-		System.out.println("Got Here");
 		log.error(jp.getSignature() + "Throwing");
 	}
 	
 	@AfterReturning(pointcut="execution(* com.revature.*.*.*(..))")
 	public void logAfterRet(JoinPoint jp) {
-		System.out.println("Got Here 2");
 		log.info(jp.getSignature());
 	}
 	

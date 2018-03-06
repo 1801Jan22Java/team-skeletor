@@ -78,7 +78,8 @@ public class UserController {
 		System.out.println(user.toString());
 		try {
 			userService.deleteUser(userID);
-			response= new ResponseEntity<>(user.toString(),HttpStatus.OK);
+			user.setPassword(null);
+			response= new ResponseEntity<>(user.getUsername() +  " deleted",HttpStatus.OK);
 		}
 		catch(Exception e) {
 			response = new ResponseEntity<>("failed to delete user", HttpStatus.BAD_REQUEST);

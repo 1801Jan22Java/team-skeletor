@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.Mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -131,28 +132,26 @@ public class MessageControllerTest {
 
 	}
 
-	/*
-	 * @Test public void testAddMessage() throws Exception { int id = 1; Message
-	 * msg = new Message(); User usr = new User(); Chatroom room = new
-	 * Chatroom(); LocalDateTime d = LocalDateTime.now(); String m = "test";
-	 * String i = "image"; msg.setId(id); msg.setUser(usr); msg.setRoom(room);
-	 * msg.setDate(d); msg.setMessage(m); msg.setImageURL(i);
-	 * 
-	 * Mockito.doNothing().when(msMock).createMessage(msg);
-	 * 
-	 * mockMvc.perform(post("/message/addMessage")
-	 * .contentType(MediaType.APPLICATION_JSON)
-	 * .content(mapper.writeValueAsString(msg))) .andExpect(status().isOk())
-	 * 
-	 * .andExpect(content().string(""));
-	 * /*.andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
-	 * .andExpect(jsonPath("$msg", is("Message successfully Created")));
-	 * 
-	 * Mockito.verify(msMock, Mockito.times(1)).createMessage(msg);
-	 * Mockito.verifyNoMoreInteractions(msMock);
-	 * 
-	 * }
-	 */
+	
+//	  @Test public void testAddMessage() throws Exception { int id = 1; Message
+//	  msg = new Message(); User usr = new User(); Chatroom room = new
+//	  Chatroom(); LocalDateTime d = LocalDateTime.now(); String m = "test";
+//	  String i = "image"; msg.setId(id); msg.setUser(usr); msg.setRoom(room);
+//	  msg.setDate(d); msg.setMessage(m); msg.setImageURL(i);
+//	  
+//	  Mockito.doNothing().when(msMock).createMessage(msg);
+//	  
+//	  mockMvc.perform(post("/message/addMessage")
+//	  .contentType(MediaType.APPLICATION_JSON)
+//	  .content(mapper.writeValueAsString(msg))) .andExpect(status().isOk())
+//	  .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+//	  .andExpect(jsonPath("$msg", is("Message successfully Created")));
+//	  
+//	  Mockito.verify(msMock, Mockito.times(1)).createMessage(msg);
+//	  Mockito.verifyNoMoreInteractions(msMock);
+//	  
+//	  }
+	 
 
 	@Test
 	public void testDeleteMessage() throws Exception {

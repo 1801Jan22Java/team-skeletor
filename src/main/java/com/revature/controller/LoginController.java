@@ -79,19 +79,16 @@ public class LoginController {
 		User u = null;
 		ResponseEntity<User> response = null;
 		try {
+			u = loginService.getUserByCredentials(login.getUsername(), login.getPassword());
 
-			u = loginService.getUserByCredentials(login.getUsername(),
-					login.getPassword());
-
-			boolean isAdmin = u.isAdmin();
-			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
-					.currentRequestAttributes();
-			HttpSession session = attr.getRequest().getSession();
-			session.setAttribute("username", u.getUsername());
-			session.setAttribute("isAdmin", u.isAdmin());
-			String sessUser = session.getAttribute("username").toString();
-			response = getSession();
-
+				boolean isAdmin = u.isAdmin();
+				ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
+						.currentRequestAttributes();
+				HttpSession session = attr.getRequest().getSession();
+				session.setAttribute("username", u.getUsername());
+				session.setAttribute("isAdmin", u.isAdmin());
+				String sessUser = session.getAttribute("username").toString();
+				response = getSession();
 		} catch (Exception e) {
 
 			response = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

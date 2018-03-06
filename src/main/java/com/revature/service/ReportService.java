@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.Report;
+import com.revature.dao.ReportDao;
 import com.revature.dao.ReportDaoImpl;
 
 @Service(value="reportService")
 public class ReportService{
 
 	@Autowired
-	ReportDaoImpl reportDaoImpl;
+	ReportDao reportDaoImpl;
 	
 	public List<Report> viewAllReports() {
 		

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.beans.MyResponseMessage;
 import com.revature.beans.Report;
 import com.revature.service.ReportService;
 
@@ -42,15 +43,15 @@ public class ReportController {
 
 	@PostMapping("/addReport")
 	@ResponseBody
-	public ResponseEntity<String> createReport(@RequestBody Report report) {
+	public ResponseEntity<MyResponseMessage> createReport(@RequestBody Report report) {
 
-		ResponseEntity<String> resp = null;
+		ResponseEntity<MyResponseMessage> resp = null;
 
 		try {
 			reportService.addReport(report);
-			resp = new ResponseEntity<>(report.toString(), HttpStatus.OK);
+			resp = new ResponseEntity<>(new MyResponseMessage(report.toString()), HttpStatus.OK);
 		} catch (Exception e) {
-			resp = new ResponseEntity<>("failed to add message",
+			resp = new ResponseEntity<>(new MyResponseMessage("failed to add message"),
 					HttpStatus.BAD_REQUEST);
 		}
 

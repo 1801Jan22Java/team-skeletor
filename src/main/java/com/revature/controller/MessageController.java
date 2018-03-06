@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +42,7 @@ public class MessageController {
 		
 	}
 	
-	@RequestMapping(value="/addMessage", method=RequestMethod.POST)
+	@PostMapping(value="/addMessage")
 	public ResponseEntity<MyResponseMessage> createMessage(@RequestBody Message message) {
 
 		ResponseEntity<MyResponseMessage> resp = null;
@@ -52,7 +53,7 @@ public class MessageController {
 			resp = new ResponseEntity<>(new MyResponseMessage("failed to add message"),
 					HttpStatus.BAD_REQUEST);
 		}
-		resp.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
+		
 		return resp;
 
 	}

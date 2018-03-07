@@ -79,18 +79,20 @@ public class UserController {
 	public ResponseEntity<User> updateUserImage(@RequestBody User user, @RequestParam int photoID) {
 		ResponseEntity<User> response = null;
 		int userID = userService.getUserID(user);
-		System.out.println(user.toString());
+		//System.out.println(user.toString());
+		//System.out.println(photoID);
+	
 		try {
 			userService.updateUserPhoto(userID, photoID);
 			
 			//Setting password to null before user is returned in response.
 			
 			user.setPassword(null);
-			
+			//System.out.println(user.getImageId());
 			response = new ResponseEntity<>(user,HttpStatus.OK);
 		} catch (Exception e) {
 			user=null;
-			e.printStackTrace();
+			//e.printStackTrace();
 			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
 		}
 		return response;

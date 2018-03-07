@@ -45,6 +45,10 @@ public class ReportService{
 		reportDaoImpl.deleteReport(reportId);
 		
 	}
+	
+	public void deleteReportByMessageId(int messageId) {
+		reportDaoImpl.deleteReportByMessageId(messageId);
+	}
 
 
 	public List<Integer> getFiveTimesReported() {

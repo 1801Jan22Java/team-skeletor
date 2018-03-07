@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
 		Session s = HibernateUtil.getSession();
 		User u = (User) s.get(User.class, id);
 		s.close();
-		u.setPassword(null);
+		
 		return u;
 	}
 
@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(User.class);
 		User u = (User) c.add(Restrictions.eq("username", username)).uniqueResult();
-		u.setPassword(null);
+
 		return u;
 	}
 
@@ -85,15 +85,21 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
-	public void updateUserPassword(int userID, String password) {
+	public void updateUserPassword(int userID, String password, String passwordConfirm) {
 		User user = getUserById(userID);
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		if (!(password == null) && !password.equals("")) {
 			try {
+				if(password.equals(passwordConfirm)) {
 				user.setPassword(password);
 				s.update(user);
 				tx.commit();
+				}
+				else {
+					System.out.println("passwords do not match");
+					tx.rollback();
+				}
 			} catch (HibernateException e) {
 				System.out.println("could not update password");
 				tx.rollback();
@@ -212,6 +218,13 @@ public class UserDaoImpl implements UserDao {
 		s.close();
 		return user;
 
+	}
+
+	@Override
+	public void updateUser(int userID, String email, String password, String passwordConfirm) {
+		updateUserEmail(userID, email);
+		updateUserPassword(userID,password,passwordConfirm);
+		
 	}
 
 

@@ -34,6 +34,7 @@ public class UserController {
 	public ResponseEntity<User> getUserById(@PathVariable int id) {
 		ResponseEntity<User> response = null;
 		User user = userService.getUserById(id);
+		user.setPassword("****");
 		if (user == null) {
 			response = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
@@ -46,6 +47,7 @@ public class UserController {
 	public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
 		ResponseEntity<User> response = null;
 		User user = userService.getUserByUsername(username);
+		user.setPassword("****");
 		if (user == null) {
 			response = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
@@ -102,21 +104,30 @@ public class UserController {
 	
 	
 	/*
-	 * controller method for updating user email
+	 * controller method for updating user email and password
 	 * */
 	
-	@RequestMapping(value="/updateUserEmail",method=RequestMethod.PUT)
+	@RequestMapping(value="/updateUser",method=RequestMethod.PUT)
 	@ResponseBody
-	public ResponseEntity<User> updateUserEmail(@RequestBody User user, @RequestParam String email) {
+	public ResponseEntity<User> updateUser(@RequestBody User user, @RequestParam String email, String password, String passwordConf) {
 		ResponseEntity<User> response = null;
 		int userID = userService.getUserID(user);
-	
+		if(password.equals("")||password==null) {
+			//System.out.println("checking password");
+			password=user.getPassword();
+		}
+		if(email.equals("") || email==null) {
+			//System.out.println("checking e-mail");
+			email=user.getEmailAddress();
+		}
 		try {
-			userService.updateUserEmail(userID, email);
+			
+			//System.out.println("In update try");
+			userService.updateUser(userID, email,password,passwordConf);
 			
 			//Setting password to null before user is returned in response.
 			
-			user.setPassword(null);
+		//	user.setPassword(null);
 			//System.out.println(user.getImageId());
 			response = new ResponseEntity<>(user,HttpStatus.OK);
 		} catch (Exception e) {
@@ -124,39 +135,11 @@ public class UserController {
 			//e.printStackTrace();
 			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
 		}
+		
 		return response;
 	}
 	
-	/*
-	 * controller method for updating user email
-	 * */
-	
-	@RequestMapping(value="/updateUserPassword",method=RequestMethod.PUT)
-	@ResponseBody
-	public ResponseEntity<User> updateUserPassword(@RequestBody User user, @RequestParam String password, @RequestParam String passConfirm) {
-		ResponseEntity<User> response = null;
-		int userID = userService.getUserID(user);
-	
-		if(password.equals(passConfirm)) {
-		try {
-			userService.updateUserPassword(userID, password);
-			
-			//Setting password to null before user is returned in response.
-			
-			user.setPassword(null);
-			//System.out.println(user.getImageId());
-			response = new ResponseEntity<>(user,HttpStatus.OK);
-		} catch (Exception e) {
-			user=null;
-			//e.printStackTrace();
-			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
-		}
-		}
-		else {
-			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
-		}
-		return response;
-	}
+
 	
 	
 	@RequestMapping(value="/deleteUser/{userID}",method=RequestMethod.DELETE)

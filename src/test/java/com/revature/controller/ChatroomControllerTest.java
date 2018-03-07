@@ -93,7 +93,7 @@ public class ChatroomControllerTest {
 		int id = 1;
 		mockMvc.perform(delete("/chatroom/delete/{id}", id))
 		.andExpect(status().isOk())
-		.andExpect(content().string("Chatroom deleted"));
+		.andExpect(jsonPath("$.msg", is("Chatroom deleted")));
 		
 		Mockito.verify(csMock, Mockito.times(1)).deleteChatroom(id);
 		Mockito.verifyNoMoreInteractions(csMock);

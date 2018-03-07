@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.beans.Message;
 import com.revature.beans.Report;
 import com.revature.dao.ReportDao;
 import com.revature.dao.ReportDaoImpl;
@@ -43,6 +44,11 @@ public class ReportService{
 		
 		reportDaoImpl.deleteReport(reportId);
 		
+	}
+
+
+	public List<Integer> getFiveTimesReported() {
+		return reportDaoImpl.getFiveTimesReported();
 	}
 
 }

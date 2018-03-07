@@ -20,13 +20,16 @@ export class LoginComponent implements OnInit {
 
     //Automatically redirects to dashboard after login
     onSubmit(login: NgForm){
-        this._httpService.processLogin(login.value.username, login.value.password).subscribe((results: any) => {
-            localStorage.setItem("currentUser", JSON.stringify(results));
-            this._httpService.loggedInUser = JSON.parse(localStorage.getItem("currentUser"));
-            if(localStorage.length == 1){
-                this.router.navigate(["dashboard"]);
-            }
-        });
+        this._httpService.processLogin(login.value.username, login.value.password).subscribe(
+            (results: any) => {
+                localStorage.setItem("currentUser", JSON.stringify(results));
+                this._httpService.loggedInUser = JSON.parse(localStorage.getItem("currentUser"));
+                if(localStorage.length == 1){
+                    this.router.navigate(["dashboard"]);
+                }
+            },
+            error => console.log("Wrong Credentials")
+        );
 
     }
 

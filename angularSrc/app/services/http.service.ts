@@ -35,6 +35,14 @@ export class HttpService {
       return this.http.get<User>(this.url + '/user/id/' + id);
   }
 
+  updateUser(user){
+      return this.http.put(this.url + "user/updateUser", user, httpOptions);
+  }
+
+  banUserById(id){
+      return this.http.post(this.url + "user/banUser", id, httpOptions);
+  }
+
   //DONE
   processLogin(username, password): Observable<User>{
       return this.http.post<User>(this.url + 'login/login', {username: username, password: password}, httpOptions);
@@ -42,7 +50,6 @@ export class HttpService {
 
   //DONE
   processRegister(username, email, password){
-      console.log("Received info from the HttpService, username: " + username + ", email: " + email + ", password: " + password);
       return this.http.post(this.url + "user/addUser", {"id": 0, "username": username, "password": password, "emailAddress": email, "imageId":1, "admin":false, "active":true, "profileImageURL":1 }, httpOptions);
   }
 
@@ -69,6 +76,10 @@ export class HttpService {
       return this.http.get<Chatroom>(this.url + "chatroom/" + id);
   }
 
+  deleteMessageByChatroomId(id) {
+      return this.http.delete(this.url + "message/delete/chatroom/" + id);
+  }
+
   // Various Message Requests
   //done
   getChatroomMessages(id): Observable<Message[]>{
@@ -76,7 +87,7 @@ export class HttpService {
   }
 
 
-  //DONE, but doesn't work if there are reports.
+  //DONE
   deleteMessage(id){
       return this.http.delete(this.url + 'message/delete/' + id);
   }
@@ -98,13 +109,20 @@ export class HttpService {
       return this.http.post(this.url + 'report/addReport', report, httpOptions);
   }
 
+  //DONE
   getMessageWithFiveReports(){
       return this.http.get(this.url + 'report/fiveReports');
+  }
+
+  deleteReportByMessageId(messageId){
+      return this.http.delete(this.url + 'report/delete/message/' + messageId);
   }
 
   //Done? Still tries to parse the returned object
   logout(){
       return this.http.get(this.url + 'login/logout');
   }
+
+
 
 }

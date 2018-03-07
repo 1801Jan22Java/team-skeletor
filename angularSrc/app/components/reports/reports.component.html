@@ -1,4 +1,5 @@
-<p>Show a bunch of reports here using ngFor</p>
+
 <div *ngFor="let message of messages">
     <p>{{message.message}}</p>
+    <button type="button" name="button" (click)="deleteMessage(message.id)">Delete this Message</button>
 </div>

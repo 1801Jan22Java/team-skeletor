@@ -2,33 +2,40 @@
     <h1>{{loggedUser.username}}'s Profile Page</h1>
 </div>
 
-<!-- want to go to a method in a message service -->
-<form method="post">
+<!-- use ngSubmit with this form -->
+<form #updateUser="ngForm" (ngSubmit)="onSubmit(updateUser)">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" placeholder="{{loggedUser.username}}" disabled>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" placeholder="{{loggedUser.password}}">
-    </div>
+      <label for="username">Username:{{loggedUser.username}} </label>
   </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" placeholder="{{loggedUser.emailAddress}}">
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="isAdmin">Title</label>
-      <input type="text" class="form-control" placeholder="Admin" *ngIf="loggedUser.admin" disabled>
-      <input type="text" class="form-control" placeholder="Slum Denizen" *ngIf="!loggedUser.admin" disabled>
+      <label for="isAdmin">Title:
+          <span *ngIf="loggedUser.admin">Admin</span>
+          <span *ngIf="!loggedUser.admin">Slum Denizen</span>
+      </label>
     </div>
     <div class="form-group col-md-6">
-      <label for="isActive">Active</label>
-      <input type="text" class="form-control" placeholder="Active" *ngIf="loggedUser.active" disabled>
-      <input type="text" class="form-control" placeholder="Banned" *ngIf="!loggedUser.active" disabled>
+      <label for="isActive">Active:
+          <span *ngIf="loggedUser.active">Active</span>
+          <span *ngIf="!loggedUser.active">Banned</span>
+      </label>
+    </div>
+</div>
+<div class="form-group">
+  <label for="email">Email: {{loggedUser.emailAddress}}</label>
+  <input type="email" class="form-control" name="email" id="email" ngModel>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="password">Password: {{loggedUser.password}}</label>
+      <input type="password" class="form-control" name="password" id="password" ngModel>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" ngModel>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Update Information</button>
+  <button class="btn btn-primary">Update Information</button>
 </form>

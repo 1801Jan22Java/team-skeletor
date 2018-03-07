@@ -19,16 +19,10 @@ export class DashboardComponent implements OnInit {
   constructor(private chatroomService: ChatroomService, private usersService: UsersService, public router: Router, private _httpService: HttpService, private messageService: MessageService) {
   }
 
-  //Hard coded our first user. Need to implement it as a service so it will be passed around to other components
-  //It will contain the information of the logged in user
-
   loggedUser;
   chatrooms;
-  chatroomTopics;
-  // The integer is to test user mock data login
-  id: number = 1;
+  chatroomMessages;
   create: boolean = false;
-
   chatroomTopic: string;
   newChatroom: Chatroom = new Chatroom();
 
@@ -36,9 +30,18 @@ export class DashboardComponent implements OnInit {
     this.create = true;
   }
 
-  //NOT RELOADING/REDIRECTING TO NEW PAGE
+
   deleteChatroom(id) {
-      this._httpService.deleteChatroom(id).subscribe( results => this.router.navigate(['dashboard']));
+      this._httpService.getChatroomMessages(id).subscribe( results => {
+          this.chatroomMessages = results;
+          for(let message in this.chatroomMessages){
+              console.log(this.chatroomMessages[message]);
+              this._httpService.deleteReportByMessageId(this.chatroomMessages[message].id).subscribe();
+          }
+          this._httpService.deleteMessageByChatroomId(id).subscribe( results => {
+              this._httpService.deleteChatroom(id).subscribe( results => this.getChatroomTopics() );
+          })
+      })
   }
 
   getChatroomTopics(): void {
@@ -48,7 +51,7 @@ export class DashboardComponent implements OnInit {
   }
 
   addChatroom(name){
-      this._httpService.addChatroom(name).subscribe( results => this.router.navigate(['dashboard']))
+      this._httpService.addChatroom(name).subscribe( results => this.getChatroomTopics() )
   }
 
   goToChatroom(id){
@@ -61,9 +64,18 @@ export class DashboardComponent implements OnInit {
       });
   }
 
+  checkLoggedIn(){
+      if(localStorage.length != 1){
+          this.router.navigate(['']);
+      } else {
+          this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+      }
+  }
+
+
   ngOnInit() {
       this.getChatroomTopics();
-      this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+      this.checkLoggedIn();
 
   }
 

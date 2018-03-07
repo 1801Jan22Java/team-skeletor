@@ -30,12 +30,12 @@ export class ChatroomComponent implements OnInit {
         let newMessage = new Message();
         newMessage.id = 0;
         newMessage.message = addMessage.value.messageBody;
-        newMessage.user = JSON.parse(this.currentUser);
+        newMessage.user = this.currentUser;
         newMessage.room = this.currentChatroom;
         newMessage.imageURL = 1;
         newMessage.date = null;
         this._httpService.createMessage(newMessage).subscribe(results => {
-            this.router.navigate(['chatroom/' + this.chatroomId]);
+            this.grabMessages();
         });
     }
 
@@ -45,13 +45,15 @@ export class ChatroomComponent implements OnInit {
         this.report.user = new User();
         this.report.user.id = this.currentUser.id;
         this.report.id = 0;
-        this._httpService.reportMessage(this.report).subscribe(results => {
-            this.router.navigate(['chatroom/' + this.chatroomId]);
-        });
+        this._httpService.reportMessage(this.report).subscribe();
     }
 
     deletePost(messageId){
-        this._httpService.deleteMessage(messageId).subscribe();
+        this._httpService.deleteReportByMessageId(messageId).subscribe(results => {
+            this._httpService.deleteMessage(messageId).subscribe(results => {
+                this.grabMessages();
+            });
+        });
     }
 
     onClick(giphyImg: NgForm){
@@ -59,15 +61,19 @@ export class ChatroomComponent implements OnInit {
             this.gifImage = results;
             let giphyMessage = new Message();
             giphyMessage.id = 0;
-            giphyMessage.message = this.gifImage.data.image_url;
+            giphyMessage.message = "";
             giphyMessage.user = this.currentUser;
             giphyMessage.room = this.currentChatroom;
-            giphyMessage.imageURL = 1;
+            giphyMessage.imageURL = this.gifImage.data.image_url;
             giphyMessage.date = null;
             this._httpService.createMessage(giphyMessage).subscribe(results => {
-                this.router.navigate(['chatroom/' + this.chatroomId]);
+                this.grabMessages();
             });
         });
+    }
+
+    grabMessages(){
+        this._httpService.getChatroomMessages(this.chatroomId).subscribe(results => this.messages = results);
     }
 
   constructor(private chatroomService: ChatroomService, private route: ActivatedRoute, private _httpService: HttpService, private messageService: MessageService, public router: Router, private gifService: GifService) {
@@ -76,13 +82,22 @@ export class ChatroomComponent implements OnInit {
         this.chatroomId = +params['id'];
         this.currentChatroom = this.chatroomService.currentChatroom;
         this.messages = this.messageService.chatroomMessages;
+    });
+  }
 
-      });
-
+  checkLoggedIn(){
+      if(localStorage.length != 1){
+          this.router.navigate(['']);
+      } else {
+          this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      }
   }
 
   ngOnInit() {
-      this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      console.log("Current User from chatroom component " + this.currentUser);
+      this.checkLoggedIn();
+      setInterval(() => {
+          this.grabMessages();
+      },10000)
+
   }
 }

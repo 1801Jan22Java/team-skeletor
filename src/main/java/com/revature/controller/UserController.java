@@ -73,7 +73,9 @@ public class UserController {
 		}
 		return response;
 	}
-	
+	/*
+	 * controller method for updating user image
+	 * */
 	@RequestMapping(value="/updateUserImage",method=RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<User> updateUserImage(@RequestBody User user, @RequestParam int photoID) {
@@ -93,6 +95,64 @@ public class UserController {
 		} catch (Exception e) {
 			user=null;
 			//e.printStackTrace();
+			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+		}
+		return response;
+	}
+	
+	
+	/*
+	 * controller method for updating user email
+	 * */
+	
+	@RequestMapping(value="/updateUserEmail",method=RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<User> updateUserEmail(@RequestBody User user, @RequestParam String email) {
+		ResponseEntity<User> response = null;
+		int userID = userService.getUserID(user);
+	
+		try {
+			userService.updateUserEmail(userID, email);
+			
+			//Setting password to null before user is returned in response.
+			
+			user.setPassword(null);
+			//System.out.println(user.getImageId());
+			response = new ResponseEntity<>(user,HttpStatus.OK);
+		} catch (Exception e) {
+			user=null;
+			//e.printStackTrace();
+			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+		}
+		return response;
+	}
+	
+	/*
+	 * controller method for updating user email
+	 * */
+	
+	@RequestMapping(value="/updateUserPassword",method=RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<User> updateUserPassword(@RequestBody User user, @RequestParam String password, @RequestParam String passConfirm) {
+		ResponseEntity<User> response = null;
+		int userID = userService.getUserID(user);
+	
+		if(password.equals(passConfirm)) {
+		try {
+			userService.updateUserPassword(userID, password);
+			
+			//Setting password to null before user is returned in response.
+			
+			user.setPassword(null);
+			//System.out.println(user.getImageId());
+			response = new ResponseEntity<>(user,HttpStatus.OK);
+		} catch (Exception e) {
+			user=null;
+			//e.printStackTrace();
+			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+		}
+		}
+		else {
 			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
 		}
 		return response;

@@ -41,8 +41,8 @@ public class UserDaoImpl implements UserDao {
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(User.class);
 		
-		Integer id =(Integer)c.add(Restrictions.eq("username",user.getUsername())).uniqueResult();
-		
+		 user =(User)c.add(Restrictions.eq("username",user.getUsername())).uniqueResult();
+		int id =user.getId();
 		return id;
 	}
 
@@ -102,13 +102,14 @@ public class UserDaoImpl implements UserDao {
 	public void updateUserPhoto(int userID, int photoID) {
 		User user = getUserById(userID);
 		Session s = HibernateUtil.getSession();
-		Transaction tx = s.beginTransaction();
-		user.setProfileImageURL(photoID);
-		s.update(user);
-		tx.commit();
+		s.beginTransaction();
+		user.setImageId(photoID);
+		//s.persist(user);
+	//	System.out.println("In user");
+		//System.out.println(user.getImageId());
+		s.saveOrUpdate(user);
+		s.getTransaction().commit();
 		s.close();
-		
-		
 	}
 	
 	/*banUser takes in a userID as an Integer

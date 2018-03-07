@@ -82,21 +82,16 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
-	public void updateUserPassword(int userID, String password, String passwordConfirm) {
+	public void updateUserPassword(int userID, String password) {
 		User user = getUserById(userID);
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		if (!(password == null) && !password.equals("")) {
 			try {
-				if(password.equals(passwordConfirm)) {
 				user.setPassword(password);
 				s.update(user);
 				tx.commit();
-				}
-				else {
-					System.out.println("passwords do not match");
-					tx.rollback();
-				}
+				
 			} catch (HibernateException e) {
 				System.out.println("could not update password");
 				tx.rollback();
@@ -218,9 +213,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void updateUser(int userID, String email, String password, String passwordConfirm) {
+	public void updateUser(int userID, String email, String password) {
 		updateUserEmail(userID, email);
-		updateUserPassword(userID,password,passwordConfirm);
+		updateUserPassword(userID,password);
 		
 	}
 

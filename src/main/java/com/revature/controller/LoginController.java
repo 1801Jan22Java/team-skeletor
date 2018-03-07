@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.revature.beans.LoginCred;
+import com.revature.beans.MyResponseMessage;
 import com.revature.beans.User;
 import com.revature.service.LoginService;
 
@@ -29,8 +31,8 @@ public class LoginController {
 	// Just checks if someone is still logged in, is an admin, or is logged out.
 	@RequestMapping(value = "/testSess")
 	@ResponseBody
-	public ResponseEntity<String> testSess() {
-		ResponseEntity<String> response = null;
+	public ResponseEntity<MyResponseMessage> testSess() {
+		ResponseEntity<MyResponseMessage> response = null;
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
 				.currentRequestAttributes();
 		HttpSession session = attr.getRequest().getSession();
@@ -38,14 +40,14 @@ public class LoginController {
 			String username = session.getAttribute("username").toString();
 			User u = loginService.getUserByUsername(username);
 			if (!u.isAdmin() && u.isActive()) {
-				response = new ResponseEntity<>("You are logged in",
+				response = new ResponseEntity<>(new MyResponseMessage("You are logged in"),
 						HttpStatus.OK);
 			} else if (u.isAdmin()) {
-				response = new ResponseEntity<>("You are an admin",
+				response = new ResponseEntity<>(new MyResponseMessage("You are an admin"),
 						HttpStatus.OK);
 			}
 		} catch (Exception e) {
-			response = new ResponseEntity<>("You are not allowed in here",
+			response = new ResponseEntity<>(new MyResponseMessage("You are not allowed in here"),
 					HttpStatus.BAD_REQUEST);
 
 		}
@@ -53,19 +55,19 @@ public class LoginController {
 	}
 
 	// For logging the user out, invalidates the session
-	@RequestMapping(value = "/logout")
+	@RequestMapping(value = "/logout", method=RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<String> logout() {
+	public ResponseEntity<MyResponseMessage> logout() {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
 				.currentRequestAttributes();
 		HttpSession session = attr.getRequest().getSession();
-		ResponseEntity<String> response = null;
+		ResponseEntity<MyResponseMessage> response = null;
 		session.invalidate();
 		try {
-			response = new ResponseEntity<>("You have been logged out",
+			response = new ResponseEntity<>(new MyResponseMessage("You have been logged out"),
 					HttpStatus.OK);
 		} catch (Exception e) {
-			response = new ResponseEntity<>("Something went wrong...",
+			response = new ResponseEntity<>(new MyResponseMessage("Something went wrong..."),
 					HttpStatus.BAD_REQUEST);
 		}
 		return response;
@@ -73,7 +75,7 @@ public class LoginController {
 
 	// Takes in HttpSession, String username, String password. Initializes
 	// session
-	@RequestMapping(value = "/login")
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<User> login(@RequestBody LoginCred login) {
 		User u = null;

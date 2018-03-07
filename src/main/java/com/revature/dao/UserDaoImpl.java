@@ -77,7 +77,7 @@ public class UserDaoImpl implements UserDao {
 		User user= getUserById(userID);
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
-		s.persist(user);
+		//s.persist(user);
 		s.delete(user);
 		s.close();
 		

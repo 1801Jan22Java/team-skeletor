@@ -19,11 +19,8 @@ public class UserDaoImpl implements UserDao {
 	public List<User> getUsers() {
 		Session s = HibernateUtil.getSession();
 		List<User> users = s.createCriteria(User.class).list();
-		// Query query = s.createQuery("from Users");
-		// List<User> users=query.list();
 		for (User u : users) {
-			//u.setPassword("****");
-			System.out.println(u);
+			u.setPassword("****");
 		}
 		s.close();
 		return users;

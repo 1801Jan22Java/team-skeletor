@@ -109,9 +109,11 @@ public class UserController {
 	
 	@RequestMapping(value="/updateUser",method=RequestMethod.PUT)
 	@ResponseBody
-	public ResponseEntity<User> updateUser(@RequestBody User user, @RequestParam String email, String password, String passwordConf) {
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		ResponseEntity<User> response = null;
 		int userID = userService.getUserID(user);
+		String password = user.getPassword();
+		String email = user.getEmailAddress();
 		if(password.equals("")||password==null) {
 			//System.out.println("checking password");
 			password=user.getPassword();
@@ -123,7 +125,7 @@ public class UserController {
 		try {
 			
 			//System.out.println("In update try");
-			userService.updateUser(userID, email,password,passwordConf);
+			userService.updateUser(userID, email,password);
 			
 			//Setting password to null before user is returned in response.
 			

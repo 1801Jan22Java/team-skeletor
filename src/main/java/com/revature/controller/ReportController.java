@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.beans.Message;
 import com.revature.beans.MyResponseMessage;
 import com.revature.beans.Report;
 import com.revature.service.ReportService;
@@ -74,6 +75,22 @@ public class ReportController {
 		return resp;
 
 	}
+	
+	@RequestMapping(value = "/fiveReports", method = RequestMethod.GET)
+	public ResponseEntity<List<Integer>> getFiveTimesReported() {
+		ResponseEntity<List<Integer>> resp = null;
+
+		List<Integer> fiveReps = reportService.getFiveTimesReported();
+		if (fiveReps == null) {
+			resp = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} else {
+			resp = new ResponseEntity<>(fiveReps, HttpStatus.OK);
+		}
+
+		return resp;
+
+	}
+	
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteReport(@PathVariable int id) {

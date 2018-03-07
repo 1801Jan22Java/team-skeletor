@@ -12,4 +12,5 @@ public interface ReportDao {
 	public void addReport(Report report);
 	public void deleteReport(int reportId);
 	public List<Integer> getFiveTimesReported();
+	public void deleteReportByMessageId(int messageId);
 }

@@ -84,6 +84,17 @@ public class MessageController {
 		
 	}
 	
+	@RequestMapping(value="/delete/chatroom/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<MyResponseMessage> deleteMessageByChatroom(@PathVariable int id){
+		
+		
+		messageService.deleteMessageByChatroom(id);
+		
+
+		return new ResponseEntity<>(new MyResponseMessage("Messages Deleted From Catroom"), HttpStatus.OK);
+		
+	}
+	
 	
 	
 }

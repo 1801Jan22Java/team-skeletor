@@ -114,8 +114,6 @@ public class UserController {
 		int userID = user.getId();
 		String updatedPassword = user.getPassword();
 		String email = user.getEmailAddress();
-		System.out.println(updatedPassword);
-		System.out.println(email);
 		User currentUser = null;
 		if(updatedPassword.equals("****")){
 			currentUser = userService.getUserById(userID);
@@ -127,18 +125,10 @@ public class UserController {
 			email=user.getEmailAddress();
 		}
 		try {
-			
-			//System.out.println("In update try");
 			userService.updateUser(userID, email,updatedPassword);
-			
-			//Setting password to null before user is returned in response.
-			
-		//	user.setPassword(null);
-			//System.out.println(user.getImageId());
 			response = new ResponseEntity<>(user,HttpStatus.OK);
 		} catch (Exception e) {
 			user=null;
-			//e.printStackTrace();
 			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
 		}
 		

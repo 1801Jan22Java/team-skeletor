@@ -2,6 +2,8 @@ package com.revature.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.beans.MyResponseMessage;
 import com.revature.beans.User;
 import com.revature.service.UserService;
 
@@ -70,51 +74,84 @@ public class UserController {
 		return response;
 	}
 	
-	@PostMapping("/deleteUser")
+	@RequestMapping(value="/updateUserImage",method=RequestMethod.PUT)
 	@ResponseBody
-	public ResponseEntity<String> deleteUser(@RequestBody int userID){
-		ResponseEntity<String> response = null;
+	public ResponseEntity<User> updateUserImage(@RequestBody User user, @RequestParam int photoID) {
+		ResponseEntity<User> response = null;
+		int userID = userService.getUserID(user);
+		System.out.println(user.toString());
+		try {
+			userService.updateUserPhoto(userID, photoID);
+			
+			//Setting password to null before user is returned in response.
+			
+			user.setPassword(null);
+			
+			response = new ResponseEntity<>(user,HttpStatus.OK);
+		} catch (Exception e) {
+			user=null;
+			e.printStackTrace();
+			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+		}
+		return response;
+	}
+	
+	
+	@RequestMapping(value="/deleteUser/{userID}",method=RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity<MyResponseMessage> deleteUser(@PathVariable int userID){
+		ResponseEntity<MyResponseMessage> response = null;
 		User user = userService.getUserById(userID);
 		System.out.println(user.toString());
 		try {
 			userService.deleteUser(userID);
-			response= new ResponseEntity<>(user.toString(),HttpStatus.OK);
+			user.setPassword(null);
+			response= new ResponseEntity<>(new MyResponseMessage(user.getUsername() +  " deleted"),HttpStatus.OK);
 		}
 		catch(Exception e) {
-			response = new ResponseEntity<>("failed to delete user", HttpStatus.BAD_REQUEST);
+			//e.printStackTrace();
+			response = new ResponseEntity<>(new MyResponseMessage("failed to delete user"), HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
 	
 	@PostMapping("/banUser")
 	@ResponseBody
-	public ResponseEntity<String> banUser(@RequestBody int userID){
-		ResponseEntity<String> response = null;
-		User user = userService.getUserById(userID);
-		System.out.println(user.toString());
+	public ResponseEntity<MyResponseMessage> banUser(@RequestBody int userID){
+		ResponseEntity<MyResponseMessage> response = null;
+	
+		
 		try {
+		//	Integer userNum= Integer.parseInt(userID);
+		//	System.out.println(userID);
+			User user = userService.getUserById(userID);
+		
+			System.out.println(userID);
 			userService.banUser(userID);
+			System.out.println(user.toString());
 			
-			response= new ResponseEntity<>("User " + user.getUsername()+ " banned",HttpStatus.OK);
+			response= new ResponseEntity<>(new MyResponseMessage("User " + user.getUsername()+ " banned"),HttpStatus.OK);
 		}
 		catch(Exception e) {
-			response = new ResponseEntity<>("failed to ban user", HttpStatus.BAD_REQUEST);
+			//e.printStackTrace();
+			response = new ResponseEntity<>(new MyResponseMessage("failed to ban user"), HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
 	
-	@PostMapping("/reactivateUser")
+	
+	@PostMapping(value="/reactivateUser")
 	@ResponseBody
-	public ResponseEntity<String> reactivateUser(@RequestBody int userID){
-		ResponseEntity<String> response = null;
+	public ResponseEntity<MyResponseMessage> reactivateUser(@RequestBody int userID){
+		ResponseEntity<MyResponseMessage> response = null;
 		User user = userService.getUserById(userID);
 	//	System.out.println(user.toString());
 		try {
 			userService.reactivateUser(userID);
-			response= new ResponseEntity<>("User " + user.getUsername() + " reactivated",HttpStatus.OK);
+			response= new ResponseEntity<>(new MyResponseMessage("User " + user.getUsername() + " reactivated"),HttpStatus.OK);
 		}
 		catch(Exception e) {
-			response = new ResponseEntity<>("failed to reactivate user", HttpStatus.BAD_REQUEST);
+			response = new ResponseEntity<>(new MyResponseMessage("failed to reactivate user"), HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}

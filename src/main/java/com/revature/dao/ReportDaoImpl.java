@@ -1,13 +1,17 @@
 package com.revature.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
+import com.revature.beans.Message;
 import com.revature.beans.Report;
 import com.revature.util.HibernateUtil;
 
@@ -45,6 +49,18 @@ public class ReportDaoImpl implements ReportDao{
 		s.save(report);
 		tx.commit();
 		s.close();		
+	}
+	
+	public List<Integer> getFiveTimesReported() {
+		List<Integer> fiveReports = new ArrayList<>();
+		Session s = HibernateUtil.getSession();
+		String hql = "SELECT message.id FROM Report Group By message HAVING COUNT(message)>5";
+		Query query = s.createQuery(hql);
+		fiveReports = query.list();
+		s.close();
+		return fiveReports;
+		
+		
 	}
 
 	// Implementation details.

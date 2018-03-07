@@ -2,6 +2,7 @@ package com.revature.dao;
 
 import java.util.List;
 
+import com.revature.beans.Message;
 import com.revature.beans.Report;
 
 public interface ReportDao {
@@ -10,4 +11,5 @@ public interface ReportDao {
 	public Report getReportById(int reportId);
 	public void addReport(Report report);
 	public void deleteReport(int reportId);
+	public List<Integer> getFiveTimesReported();
 }

@@ -19,6 +19,10 @@ public class UserService {
 		return userDaoImpl.getUserById(userID);
 	}
 	
+	public int getUserID(User user) {
+		return userDaoImpl.getUserId(user); 
+	}
+	
 	public List<User> getUsers(){
 		return userDaoImpl.getUsers();
 	}

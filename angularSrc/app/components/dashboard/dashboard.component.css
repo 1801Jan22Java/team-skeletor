@@ -1,0 +1,21 @@
+.delete{
+    float: right;
+}
+
+.topicContainer{
+    display: inline-block;
+    border-style: solid;
+    margin: 8px;
+    padding: 10px;
+    width: 100%;
+}
+
+button{
+    display: inline-block;
+}
+
+.topics{
+    text-align: center;
+    display: inline-block;
+    width: 90%;
+}

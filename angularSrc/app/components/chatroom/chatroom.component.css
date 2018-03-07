@@ -1,0 +1,14 @@
+.messageBoard {
+    border-style: solid;
+    height: 65vh;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+}
+
+.message{
+    margin: 8px;
+}
+
+.reportSpan {
+    float: right;
+}

@@ -1,0 +1,26 @@
+<div *ngIf="users">
+    <div class="card-deck">
+        <div class="col-sm-6" *ngFor="let user of allUsers">
+            <div class="card" (click)="getUserById(user.id)">
+                <div class="card-block">
+                    <h4 class="card-title">{{user.username}}</h4>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{user.emailAddress}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showUser">
+    <div class="card">
+        <div class="card-block">
+            <h1 class="card-title">{{showUser.username}}</h1>
+            <p>Password: {{showUser.password}}</p>
+            <p>Email: {{showUser.emailAddress}}</p>
+            <p>Admin: {{showUser.admin}}</p>
+            <p *ngIf="!showUser.admin" (click)="banUser(showUser.id)">BAN HAMMER</p>
+        </div>
+    </div>
+</div>

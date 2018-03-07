@@ -1,0 +1,41 @@
+<div *ngIf="loggedUser">
+    <h1>{{loggedUser.username}}'s Profile Page</h1>
+</div>
+
+<!-- use ngSubmit with this form -->
+<form #updateUser="ngForm" (ngSubmit)="onSubmit(updateUser)">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="username">Username:{{loggedUser.username}} </label>
+  </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="isAdmin">Title:
+          <span *ngIf="loggedUser.admin">Admin</span>
+          <span *ngIf="!loggedUser.admin">Slum Denizen</span>
+      </label>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="isActive">Active:
+          <span *ngIf="loggedUser.active">Active</span>
+          <span *ngIf="!loggedUser.active">Banned</span>
+      </label>
+    </div>
+</div>
+<div class="form-group">
+  <label for="email">Email: {{loggedUser.emailAddress}}</label>
+  <input type="email" class="form-control" name="email" id="email" ngModel>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="password">Password: {{loggedUser.password}}</label>
+      <input type="password" class="form-control" name="password" id="password" ngModel>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" ngModel>
+    </div>
+  </div>
+  <button class="btn btn-primary">Update Information</button>
+</form>

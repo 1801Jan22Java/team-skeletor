@@ -1,0 +1,55 @@
+<div *ngIf="users">
+    <div class="card-deck">
+        <div class="col-sm-6" *ngFor="let user of allUsers">
+            <div class="card" (click)="getUserById(user.id)">
+                <div class="card-block">
+                    <h4 class="card-title">{{user.username}}</h4>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{user.emailAddress}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showUser">
+    <!-- use ngSubmit with this form -->
+    <form #updateUser="ngForm" (ngSubmit)="onSubmit(updateUser)">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="username">Username:{{showUser.username}} </label>
+      </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="isAdmin">Title:
+              <span *ngIf="showUser.admin">Admin</span>
+              <span *ngIf="!showUser.admin">Slum Denizen</span>
+          </label>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="isActive">Active:
+              <span *ngIf="showUser.active">Active</span>
+              <span *ngIf="!showUser.active">Banned</span>
+          </label>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email: {{showUser.emailAddress}}</label>
+      <input type="email" class="form-control" name="email" id="email" ngModel>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="password">Password: {{showUser.password}}</label>
+          <input type="password" class="form-control" name="password" id="password" ngModel>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" ngModel>
+        </div>
+      </div>
+      <button class="btn btn-primary">Update Information</button>
+      <button type="button" name="button" (click)="banUser(showUser.id)" *ngIf="!showUser.admin && showUser.active">Ban This User</button>
+    </form>
+</div>

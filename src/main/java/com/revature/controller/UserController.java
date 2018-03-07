@@ -90,15 +90,16 @@ public class UserController {
 			response = new ResponseEntity<>(user,HttpStatus.OK);
 		} catch (Exception e) {
 			user=null;
+			e.printStackTrace();
 			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
 	
 	
-	@RequestMapping(value="/deleteUser",method=RequestMethod.DELETE)
+	@RequestMapping(value="/deleteUser/{userID}",method=RequestMethod.DELETE)
 	@ResponseBody
-	public ResponseEntity<MyResponseMessage> deleteUser(@RequestBody int userID){
+	public ResponseEntity<MyResponseMessage> deleteUser(@PathVariable int userID){
 		ResponseEntity<MyResponseMessage> response = null;
 		User user = userService.getUserById(userID);
 		System.out.println(user.toString());
@@ -108,23 +109,31 @@ public class UserController {
 			response= new ResponseEntity<>(new MyResponseMessage(user.getUsername() +  " deleted"),HttpStatus.OK);
 		}
 		catch(Exception e) {
+			//e.printStackTrace();
 			response = new ResponseEntity<>(new MyResponseMessage("failed to delete user"), HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
 	
-	@PostMapping(value="/banUser")
+	@PostMapping("/banUser")
 	@ResponseBody
 	public ResponseEntity<MyResponseMessage> banUser(@RequestBody int userID){
 		ResponseEntity<MyResponseMessage> response = null;
-		User user = userService.getUserById(userID);
-		System.out.println(user.toString());
+	
+		
 		try {
+		//	Integer userNum= Integer.parseInt(userID);
+		//	System.out.println(userID);
+			User user = userService.getUserById(userID);
+		
+			System.out.println(userID);
 			userService.banUser(userID);
+			System.out.println(user.toString());
 			
 			response= new ResponseEntity<>(new MyResponseMessage("User " + user.getUsername()+ " banned"),HttpStatus.OK);
 		}
 		catch(Exception e) {
+			//e.printStackTrace();
 			response = new ResponseEntity<>(new MyResponseMessage("failed to ban user"), HttpStatus.BAD_REQUEST);
 		}
 		return response;

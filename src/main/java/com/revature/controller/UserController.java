@@ -111,12 +111,16 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		ResponseEntity<User> response = null;
-		int userID = userService.getUserID(user);
-		String password = user.getPassword();
+		int userID = user.getId();
+		String updatedPassword = user.getPassword();
 		String email = user.getEmailAddress();
-		if(password.equals("")||password==null) {
-			//System.out.println("checking password");
-			password=user.getPassword();
+		System.out.println(updatedPassword);
+		System.out.println(email);
+		User currentUser = null;
+		if(updatedPassword.equals("****")){
+			currentUser = userService.getUserById(userID);
+			updatedPassword = currentUser.getPassword();
+			
 		}
 		if(email.equals("") || email==null) {
 			//System.out.println("checking e-mail");
@@ -125,7 +129,7 @@ public class UserController {
 		try {
 			
 			//System.out.println("In update try");
-			userService.updateUser(userID, email,password);
+			userService.updateUser(userID, email,updatedPassword);
 			
 			//Setting password to null before user is returned in response.
 			

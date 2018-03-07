@@ -52,5 +52,17 @@ public class UserService {
 		userDaoImpl.addUser(user);
 	}
 	
+	public void updateUserEmail(int userID, String email) {
+		userDaoImpl.updateUserEmail(userID, email);
+	}
+	
+	public void updateUserPassword(int userID, String password, String passwordConf) {
+		userDaoImpl.updateUserPassword(userID, password,passwordConf);
+	}
+	public void updateUser(int userID, String email, String password, String passwordConf) {
+		userDaoImpl.updateUser(userID, email, password, passwordConf);
+	}
+	
+
 
 }

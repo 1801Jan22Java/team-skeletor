@@ -23,7 +23,7 @@ export class HttpService {
   loggedInUser: User;
 
   //NEED TO CHANGE URL TO PROJECT URL
-  url: string = "http://localhost:8084/SkeletorSlums/";
+  url: string = "http://ec2-54-145-228-182.compute-1.amazonaws.com:8084/SkeletorSlums/";
 
   //DONE
   getAllUsers(){

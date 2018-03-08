@@ -3,7 +3,7 @@
     <div *ngIf="loggedUser.admin">
         <p>Welcome to the Slums Lord {{loggedUser.username}}.</p>
         <!-- have the chatroom creation div hidden until Admin wants to create one -->
-        <p (click)="showAdd()">Create New Chatroom</p>
+        <h4 (click)="showAdd()">Create New Chatroom</h4>
         <div *ngIf="create">
             <h5 *ngIf="create">What would you like the title to be?</h5>
             <input type="text" [(ngModel)]="chatroomTopic">

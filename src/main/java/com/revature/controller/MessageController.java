@@ -20,7 +20,7 @@ import com.revature.service.MessageService;
 
 @Controller("messageController")
 @RequestMapping("/message")
-@CrossOrigin(origins="http://localhost:8084")
+@CrossOrigin(origins="*")
 
 public class MessageController {
 	

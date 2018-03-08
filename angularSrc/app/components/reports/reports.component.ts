@@ -26,7 +26,9 @@ export class ReportsComponent implements OnInit {
     }
 
     deleteMessage(messageId){
-        this._httpService.deleteReportByMessageId(messageId).subscribe(results => this.getReports());
+        this._httpService.deleteReportByMessageId(messageId).subscribe(results => {
+            this._httpService.deleteMessage(messageId).subscribe(results => this.getReports());
+            });
     }
 
   constructor(public _httpService: HttpService, public router: Router) {

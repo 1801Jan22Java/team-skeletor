@@ -71,7 +71,7 @@ public class UserControllerTest {
 						content().contentType(TestUtil.APPLICATION_JSON_UTF8))
 				.andExpect(jsonPath("$.id", is(1)))
 				.andExpect(jsonPath("$.username", is("username")))
-				.andExpect(jsonPath("$.password", is("password")))
+				.andExpect(jsonPath("$.password", is("****")))
 				.andExpect(jsonPath("$.emailAddress", is("emailAddress")))
 				.andExpect(jsonPath("$.admin", is(true)))
 				.andExpect(jsonPath("$.active", is(true)));
@@ -129,7 +129,7 @@ public class UserControllerTest {
 						content().contentType(TestUtil.APPLICATION_JSON_UTF8))
 				.andExpect(jsonPath("$.id", is(1)))
 				.andExpect(jsonPath("$.username", is("username")))
-				.andExpect(jsonPath("$.password", is("password")))
+				.andExpect(jsonPath("$.password", is("****")))
 				.andExpect(jsonPath("$.emailAddress", is("emailAddress")))
 				.andExpect(jsonPath("$.admin", is(true)))
 				.andExpect(jsonPath("$.active", is(true)));

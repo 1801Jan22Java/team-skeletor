@@ -91,7 +91,7 @@ public class ReportControllerTest {
 		int id = 1;
 		mockMvc.perform(delete("/report/delete/{id}", id))
 		.andExpect(status().isOk())
-		.andExpect(content().string("Report deleted"));
+		.andExpect(jsonPath("$.msg", is("Report deleted")));
 		
 		Mockito.verify(rsMock, Mockito.times(1)).deleteReport(id);
 		Mockito.verifyNoMoreInteractions(rsMock);

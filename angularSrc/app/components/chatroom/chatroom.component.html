@@ -1,7 +1,7 @@
 <div *ngIf="currentChatroom">
     <div class="container-fluid">
         <h1>Welcome to the awesome {{currentChatroom.name}} chatroom</h1>
-        <div class="messageBoard" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        <div class="messageBoard" #scrollMe [scrollTop]="scrollMe.scrollHeight" style="background-color: #4d3a96">
             <div class="message" *ngFor="let message of messages">
                 <!-- Need to format the date -->
                 <p>{{message.date.month}}/{{message.date.dayOfMonth}}, {{message.date.hour}}:{{message.date.minute}}</p>

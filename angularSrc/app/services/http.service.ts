@@ -25,12 +25,12 @@ export class HttpService {
   //NEED TO CHANGE URL TO PROJECT URL
   url: string = "http://ec2-54-145-228-182.compute-1.amazonaws.com:8084/SkeletorSlums/";
 
-  //DONE
+
   getAllUsers(){
       return this.http.get(this.url + '/user/all');
   }
 
-  //DONE
+
   getUserById(id): Observable<User>{
       return this.http.get<User>(this.url + '/user/id/' + id);
   }
@@ -43,35 +43,35 @@ export class HttpService {
       return this.http.post(this.url + "user/banUser", id, httpOptions);
   }
 
-  //DONE
+
   processLogin(username, password): Observable<User>{
       return this.http.post<User>(this.url + 'login/login', {username: username, password: password}, httpOptions);
   }
 
-  //DONE
+
   processRegister(username, email, password){
       return this.http.post(this.url + "user/addUser", {"id": 0, "username": username, "password": password, "emailAddress": email, "imageId":1, "admin":false, "active":true, "profileImageURL":1 }, httpOptions);
   }
 
   // Chatroom Requests
 
-  // DONE
+
   addChatroom(chatroomTitle){
       return this.http.post(this.url + "chatroom/addChatroom", {name: chatroomTitle}, httpOptions);
   }
 
 
-  //DONE
+
   deleteChatroom(id){
       return this.http.delete(this.url + "chatroom/delete/" + id);
   }
 
-  //DONE
+
   getChatroomTopics(){
       return this.http.get(this.url + "chatroom/all");
   }
 
-  //DONE
+
   getChatroomById(id): Observable<Chatroom>{
       return this.http.get<Chatroom>(this.url + "chatroom/" + id);
   }
@@ -81,35 +81,34 @@ export class HttpService {
   }
 
   // Various Message Requests
-  //done
+
   getChatroomMessages(id): Observable<Message[]>{
       return this.http.get<Message[]>(this.url + 'message/chatroom/' + id);
   }
 
 
-  //DONE
+
   deleteMessage(id){
       return this.http.delete(this.url + 'message/delete/' + id);
   }
 
 
-  // DONE
+
   createMessage(message){
-    console.log(message);
       return this.http.post(this.url + 'message/addMessage', message, httpOptions);
   }
 
-  //DONE
+
   getMessageById(id): Observable<Message>{
       return this.http.get<Message>(this.url + 'message/' + id);
   }
 
-  //DONE
+
   reportMessage(report){
       return this.http.post(this.url + 'report/addReport', report, httpOptions);
   }
 
-  //DONE
+
   getMessageWithFiveReports(){
       return this.http.get(this.url + 'report/fiveReports');
   }
@@ -118,7 +117,7 @@ export class HttpService {
       return this.http.delete(this.url + 'report/delete/message/' + messageId);
   }
 
-  //Done? Still tries to parse the returned object
+  
   logout(){
       return this.http.get(this.url + 'login/logout');
   }

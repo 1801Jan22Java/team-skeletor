@@ -49,6 +49,7 @@
             <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" ngModel>
         </div>
       </div>
+      <p *ngIf="errorMessage">{{errorMessage}}</p>
       <button class="btn btn-primary">Update Information</button>
       <button type="button" name="button" (click)="banUser(showUser.id)" *ngIf="!showUser.admin && showUser.active">Ban This User</button>
     </form>

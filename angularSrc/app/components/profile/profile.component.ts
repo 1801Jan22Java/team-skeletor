@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
     loggedUser: User;
+    errorMessage: string;
 
   constructor(public _httpService: HttpService, public router: Router) {}
 
@@ -28,7 +29,8 @@ export class ProfileComponent implements OnInit {
           if(updateUser.value.password == updateUser.value.confirmPassword){
               this.loggedUser.password =  updateUser.value.password;
           } else {
-              console.log("Wrong passwords");
+              updateUser.reset();
+              this.errorMessage = "Passwords do not match"
               return;
           }
       }
@@ -39,9 +41,8 @@ export class ProfileComponent implements OnInit {
       this._httpService.updateUser(this.loggedUser).subscribe(results => {
           localStorage.clear();
           localStorage.setItem("currentUser", JSON.stringify(this.loggedUser));
-          updateUser.value.email = "";
-          updateUser.value.passsword = "";
-
+          updateUser.reset();
+          this.errorMessage = "";
           this.checkLoggedIn()
       });
   }

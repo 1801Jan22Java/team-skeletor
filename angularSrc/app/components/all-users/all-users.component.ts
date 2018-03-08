@@ -15,6 +15,7 @@ export class AllUsersComponent implements OnInit {
     allUsers;
     showUser: User;
     currentUser;
+    errorMessage;
 
     getAllUsers(): void {
         this._httpService.getAllUsers().subscribe(returnedUsers => this.allUsers = returnedUsers);
@@ -34,11 +35,12 @@ export class AllUsersComponent implements OnInit {
     }
 
     onSubmit(updateUser: NgForm){
-        if(updateUser.value.password){
+        if(updateUser.value.password && updateUser.value.email){
             if(updateUser.value.password == updateUser.value.confirmPassword){
                 this.showUser.password =  updateUser.value.password;
             } else {
-                console.log("Wrong passwords");
+                updateUser.reset();
+                this.errorMessage = "Passwords to not match";
                 return;
             }
         }
@@ -46,9 +48,10 @@ export class AllUsersComponent implements OnInit {
             this.showUser.emailAddress = updateUser.value.email;
         }
         this._httpService.updateUser(this.showUser).subscribe(results => {
-            this.getAllUsers();
-            updateUser.value.email = "";
-            updateUser.value.password = "";});
+            updateUser.reset();
+            this.errorMessage = "";
+            this.getAllUsers()
+        });
     }
 
 

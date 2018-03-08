@@ -37,5 +37,6 @@
         <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" ngModel>
     </div>
   </div>
+  <p *ngIf="errorMessage">{{errorMessage}}</p>
   <button class="btn btn-primary">Update Information</button>
 </form>

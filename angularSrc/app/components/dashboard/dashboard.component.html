@@ -1,0 +1,22 @@
+<div *ngIf="loggedUser">
+    <h3>Here are some top chatrooms</h3>
+    <div *ngIf="loggedUser.admin">
+        <p>Welcome to the Slums Lord {{loggedUser.username}}.</p>
+        <!-- have the chatroom creation div hidden until Admin wants to create one -->
+        <h4 (click)="showAdd()">Create New Chatroom</h4>
+        <div *ngIf="create">
+            <h5 *ngIf="create">What would you like the title to be?</h5>
+            <input type="text" [(ngModel)]="chatroomTopic">
+            {{chatroomTopic}}
+            <button type="button" name="button" (click)="addChatroom(chatroomTopic)">Add the new Chatroom!</button>
+        </div>
+    </div>
+    <div class="chatroomTopics">
+        <!-- Will need to have some chatrooms at some point. Should make a service that holds all the information in database-->
+            <div class="topicContainer" *ngFor="let chatroom of chatrooms">
+                <div class="topics" (click)="goToChatroom(chatroom.id)">Topic {{chatroom.name}}</div>
+                <button type="button" class="delete" *ngIf="loggedUser.admin" (click)="deleteChatroom(chatroom.id)">Delete</button>
+            </div>
+
+    </div>
+</div>

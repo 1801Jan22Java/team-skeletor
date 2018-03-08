@@ -16,7 +16,7 @@ import com.revature.beans.Report;
 import com.revature.util.HibernateUtil;
 
 @Component
-public class ReportDaoImpl implements ReportDao{
+public class ReportDaoImpl implements ReportDao {
 
 	public List<Report> viewAllReports() {
 		Session s = HibernateUtil.getSession();
@@ -25,8 +25,9 @@ public class ReportDaoImpl implements ReportDao{
 		return allReports;
 	}
 
-	//Currently have it passing as a integer, but may change to a Message Object
-	//because Report has a Message object field. Not too sure if the ID is the only thing stored in DB
+	// Currently have it passing as a integer, but may change to a Message Object
+	// because Report has a Message object field. Not too sure if the ID is the only
+	// thing stored in DB
 	public List<Report> viewReportsByMessageId(int messageId) {
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(Report.class);
@@ -48,9 +49,9 @@ public class ReportDaoImpl implements ReportDao{
 		Transaction tx = s.beginTransaction();
 		s.save(report);
 		tx.commit();
-		s.close();		
+		s.close();
 	}
-	
+
 	public List<Integer> getFiveTimesReported() {
 		List<Integer> fiveReports = new ArrayList<>();
 		Session s = HibernateUtil.getSession();
@@ -59,12 +60,29 @@ public class ReportDaoImpl implements ReportDao{
 		fiveReports = query.list();
 		s.close();
 		return fiveReports;
-		
-		
+
+	}
+
+	public void deleteReportByMessageId(int messageId) {
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		try {
+			String hql = "DELETE FROM Report WHERE message.id = :id";
+			Query query = s.createQuery(hql);
+			query.setInteger("id", messageId);
+			query.executeUpdate();
+
+			tx.commit();
+		} catch (Exception t) {
+			t.printStackTrace();
+			tx.rollback();
+		}
+		s.close();
 	}
 
 	// Implementation details.
-	// Not sure if we want to actually delete the report or just have it contain a status saying it has been resolved.
+	// Not sure if we want to actually delete the report or just have it contain a
+	// status saying it has been resolved.
 	public void deleteReport(int reportId) {
 		Session s = HibernateUtil.getSession();
 		Transaction t = s.beginTransaction();
@@ -73,5 +91,5 @@ public class ReportDaoImpl implements ReportDao{
 		t.commit();
 		s.close();
 	}
-	
+
 }

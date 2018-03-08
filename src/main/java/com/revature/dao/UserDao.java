@@ -13,10 +13,12 @@ public interface UserDao {
 	public User getUserByUsername(String username);
 	public int addUser(User user);
 	public void deleteUser(int userID);
-	public void updateUser(int userID);
+	public void updateUserPassword(int userID, String password);
+	public void updateUserEmail(int userID,String email);
 	public void banUser(Integer userID);
 	public void reactivateUser(Integer userID);
 	public User getUserByCredentials(String username, String password);
 	public void updateUserPhoto(int userID, int photoID);
+	public void updateUser(int userID, String email, String password);
 
 }

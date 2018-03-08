@@ -21,7 +21,7 @@ import com.revature.service.ReportService;
 
 @Controller("reportController")
 @RequestMapping("/report")
-@CrossOrigin(origins="http://localhost:8084")
+@CrossOrigin(origins="http://localhost:4200")
 public class ReportController {
 
 	@Autowired
@@ -93,12 +93,24 @@ public class ReportController {
 	
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteReport(@PathVariable int id) {
-		ResponseEntity<String> resp = null;
+	public ResponseEntity<MyResponseMessage> deleteReport(@PathVariable int id) {
+		ResponseEntity<MyResponseMessage> resp = null;
 
 		reportService.deleteReport(id);
 
-		resp = new ResponseEntity<>("Report deleted", HttpStatus.OK);
+		resp = new ResponseEntity<>(new MyResponseMessage("Report deleted"), HttpStatus.OK);
+
+		return resp;
+
+	}
+	
+	@RequestMapping(value = "/delete/message/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<MyResponseMessage> deleteReportByMessageId(@PathVariable int id) {
+		ResponseEntity<MyResponseMessage> resp = null;
+
+		reportService.deleteReportByMessageId(id);
+
+		resp = new ResponseEntity<>(new MyResponseMessage("Report(s) deleted"), HttpStatus.OK);
 
 		return resp;
 

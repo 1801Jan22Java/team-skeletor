@@ -43,4 +43,9 @@ public class MessageService {
 		return messageDaoImpl.getMessagesByChatroomId(roomId);
 	}
 
+	public void deleteMessageByChatroom(int id) {
+		messageDaoImpl.deleteMessageByChatroom(id);
+		
+	}
+
 }

@@ -1,0 +1,40 @@
+<div *ngIf="currentChatroom">
+    <div class="container-fluid">
+        <h1>Welcome to the awesome {{currentChatroom.name}} chatroom</h1>
+        <div class="messageBoard" #scrollMe [scrollTop]="scrollMe.scrollHeight" style="background-color: #4d3a96">
+            <div class="message" *ngFor="let message of messages">
+                <!-- Need to format the date -->
+                <p>{{message.user.username}} on {{message.date.month}}/{{message.date.dayOfMonth}}, {{message.date.hour}}:{{message.date.minute}}</p>
+                <div *ngIf="message.message; else noMessage">
+                    <span>{{message.message}}</span>
+                </div>
+                <ng-template #noMessage>
+                    <img src="{{message.imageURL}}">
+                </ng-template>
+
+                <button class="chatroomActions btn btn-outline-warning" (click)="reportPost(message.id)">Report</button>
+                <button *ngIf="currentUser.admin" (click)="deletePost(message.id)" class="chatroomActions btn btn-outline-warning">Delete</button>
+            </div>
+        </div>
+
+        <form #addMessage="ngForm" (ngSubmit)="onSubmit(addMessage)">
+            <div class="input-group">
+                <input type="text" class="form-control" ngModel name="messageBody">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary">Post Message</button>
+                </span>
+            </div>
+        </form>
+
+        <form #giphyImg="ngForm" (ngSubmit)="onClick(giphyImg)">
+            <div class="input-group">
+                <input type="text" class="form-control" ngModel name="giphyBody">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary">Post Giphy</button>
+                </span>
+            </div>
+        </form>
+
+
+    </div>
+</div>

@@ -20,7 +20,7 @@ import com.revature.service.MessageService;
 
 @Controller("messageController")
 @RequestMapping("/message")
-@CrossOrigin(origins="http://localhost:8084")
+@CrossOrigin(origins="http://localhost:4200")
 
 public class MessageController {
 	
@@ -81,6 +81,17 @@ public class MessageController {
 		
 
 		return new ResponseEntity<>(new MyResponseMessage("Message Deleted"), HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/delete/chatroom/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<MyResponseMessage> deleteMessageByChatroom(@PathVariable int id){
+		
+		
+		messageService.deleteMessageByChatroom(id);
+		
+
+		return new ResponseEntity<>(new MyResponseMessage("Messages Deleted From Catroom"), HttpStatus.OK);
 		
 	}
 	

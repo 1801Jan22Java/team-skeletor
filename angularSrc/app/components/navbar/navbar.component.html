@@ -1,0 +1,26 @@
+<nav class="navbar navbar-dark bg-dark" *ngIf="!_httpService.loggedInUser">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/dashboard">Skeletor Slums</a>
+        <div class="navbar-nav-scroll">
+            <ul class="navbar nav">
+                <li class="nav-item"><a routerLink="/login" class="nav-item nav-link">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-dark bg-dark" *ngIf="_httpService.loggedInUser">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/dashboard">Skeletor Slums</a>
+        <div class="navbar-nav-scroll">
+            <ul class="navbar nav">
+                <li class="nav-item"><a routerLink="/dashboard" class="nav-item nav-link">Dashboard</a></li>
+                <li class="nav-item"><a routerLink="/profile" class="nav-item nav-link">Profile</a></li>
+                <li class="nav-item" *ngIf="_httpService.loggedInUser.admin"><a routerLink='/allUsers' class="nav-item nav-link">View Users</a></li>
+                <li class="nav-item" *ngIf="_httpService.loggedInUser.admin"><a routerLink='/reports' class="nav-item nav-link">View Reports</a></li>
+                <li class="nav-item"><a routerLink='/logout' class="nav-item nav-link">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<img src="SkeletorSlums/static/mainGraphic.PNG" alt="">

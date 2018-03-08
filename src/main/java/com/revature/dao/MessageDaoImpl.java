@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -90,6 +91,25 @@ public class MessageDaoImpl implements MessageDao {
 		Collections.sort(list);
 
 		return list;
+	}
+
+	@Override
+	public void deleteMessageByChatroom(int roomId) {
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		try {
+			String hql = "DELETE FROM Message WHERE message.room.id = :id";
+			Query query = s.createQuery(hql);
+			query.setInteger("id", roomId);
+			query.executeUpdate();
+
+			tx.commit();
+		} catch (Exception t) {
+			t.printStackTrace();
+			tx.rollback();
+		}
+		s.close();
+		
 	}
 
 }

@@ -24,7 +24,7 @@ import com.revature.service.UserService;
 
 @Controller("userController")
 @RequestMapping("/user")
-@CrossOrigin (origins="http://localhost:8084")
+@CrossOrigin (origins="http://localhost:4200")
 public class UserController {
 
 	@Autowired
@@ -34,6 +34,7 @@ public class UserController {
 	public ResponseEntity<User> getUserById(@PathVariable int id) {
 		ResponseEntity<User> response = null;
 		User user = userService.getUserById(id);
+		user.setPassword("****");
 		if (user == null) {
 			response = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
@@ -46,6 +47,7 @@ public class UserController {
 	public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
 		ResponseEntity<User> response = null;
 		User user = userService.getUserByUsername(username);
+		user.setPassword("****");
 		if (user == null) {
 			response = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
@@ -73,7 +75,9 @@ public class UserController {
 		}
 		return response;
 	}
-	
+	/*
+	 * controller method for updating user image
+	 * */
 	@RequestMapping(value="/updateUserImage",method=RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<User> updateUserImage(@RequestBody User user, @RequestParam int photoID) {
@@ -97,6 +101,41 @@ public class UserController {
 		}
 		return response;
 	}
+	
+	
+	/*
+	 * controller method for updating user email and password
+	 * */
+	
+	@RequestMapping(value="/updateUser",method=RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
+		ResponseEntity<User> response = null;
+		int userID = user.getId();
+		String updatedPassword = user.getPassword();
+		String email = user.getEmailAddress();
+		User currentUser = null;
+		if(updatedPassword.equals("****")){
+			currentUser = userService.getUserById(userID);
+			updatedPassword = currentUser.getPassword();
+			
+		}
+		if(email.equals("") || email==null) {
+			//System.out.println("checking e-mail");
+			email=user.getEmailAddress();
+		}
+		try {
+			userService.updateUser(userID, email,updatedPassword);
+			response = new ResponseEntity<>(user,HttpStatus.OK);
+		} catch (Exception e) {
+			user=null;
+			response = new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+		}
+		
+		return response;
+	}
+	
+
 	
 	
 	@RequestMapping(value="/deleteUser/{userID}",method=RequestMethod.DELETE)

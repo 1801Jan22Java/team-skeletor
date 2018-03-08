@@ -22,7 +22,7 @@ import com.revature.service.LoginService;
 
 @Controller("loginController")
 @RequestMapping("/login")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:8084")
 public class LoginController {
 
 	@Autowired

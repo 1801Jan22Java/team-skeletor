@@ -21,7 +21,7 @@ import com.revature.service.ReportService;
 
 @Controller("reportController")
 @RequestMapping("/report")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://localhost:8084")
 public class ReportController {
 
 	@Autowired

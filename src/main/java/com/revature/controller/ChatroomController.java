@@ -22,7 +22,7 @@ import com.revature.service.ChatroomService;
 
 @Controller("chatroomController")
 @RequestMapping("/chatroom")
-@CrossOrigin (origins="http://localhost:4200")
+@CrossOrigin (origins="http://localhost:8084")
 public class ChatroomController {
 
 	@Autowired

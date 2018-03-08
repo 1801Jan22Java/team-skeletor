@@ -35,7 +35,7 @@ export class ChatroomComponent implements OnInit {
         newMessage.imageURL = 1;
         newMessage.date = null;
         this._httpService.createMessage(newMessage).subscribe(results => {
-            addMessage.value.messageBody = "";
+            addMessage.reset();
             this.grabMessages();
         });
     }
@@ -68,7 +68,7 @@ export class ChatroomComponent implements OnInit {
             giphyMessage.imageURL = this.gifImage.data.image_url;
             giphyMessage.date = null;
             this._httpService.createMessage(giphyMessage).subscribe(results => {
-                giphyImg.value.giphyBody = "";
+                giphyImg.reset();
                 this.grabMessages();
             });
         });

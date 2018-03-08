@@ -45,7 +45,10 @@ export class AllUsersComponent implements OnInit {
         if(updateUser.value.email){
             this.showUser.emailAddress = updateUser.value.email;
         }
-        this._httpService.updateUser(this.showUser).subscribe(results => this.getAllUsers());
+        this._httpService.updateUser(this.showUser).subscribe(results => {
+            this.getAllUsers();
+            updateUser.value.email = "";
+            updateUser.value.password = "";});
     }
 
 

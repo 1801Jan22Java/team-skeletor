@@ -39,6 +39,9 @@ export class ProfileComponent implements OnInit {
       this._httpService.updateUser(this.loggedUser).subscribe(results => {
           localStorage.clear();
           localStorage.setItem("currentUser", JSON.stringify(this.loggedUser));
+          updateUser.value.email = "";
+          updateUser.value.passsword = "";
+
           this.checkLoggedIn()
       });
   }

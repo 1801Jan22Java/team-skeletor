@@ -13,7 +13,11 @@ export class LoginComponent implements OnInit {
     login: boolean = true;
 
     showRegister(): void{
-        this.login = this.login ? false : true;
+        this.login = false;
+    }
+
+    showLogin(): void{
+        this.login = true;
     }
 
     //After attempting to login, the admin boolean is stored into the localStorage so other components can access it.

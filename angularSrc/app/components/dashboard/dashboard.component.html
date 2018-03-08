@@ -7,7 +7,6 @@
         <div *ngIf="create">
             <h5 *ngIf="create">What would you like the title to be?</h5>
             <input type="text" [(ngModel)]="chatroomTopic">
-            {{chatroomTopic}}
             <button type="button" name="button" (click)="addChatroom(chatroomTopic)">Add the new Chatroom!</button>
         </div>
     </div>

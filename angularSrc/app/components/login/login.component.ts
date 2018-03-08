@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
     //Done
     onClick(register: NgForm){
         this._httpService.processRegister(register.value.username, register.value.email, register.value.password).subscribe( results => {
+            localStorage.setItem("currentUser", JSON.stringify(results));
+            this._httpService.loggedInUser = JSON.parse(localStorage.getItem("currentUser"));
             this.router.navigate(["dashboard"]);
         });
     }

@@ -4,16 +4,16 @@
         <div class="messageBoard" #scrollMe [scrollTop]="scrollMe.scrollHeight" style="background-color: #4d3a96">
             <div class="message" *ngFor="let message of messages">
                 <!-- Need to format the date -->
-                <p>{{message.date.month}}/{{message.date.dayOfMonth}}, {{message.date.hour}}:{{message.date.minute}}</p>
+                <p>{{message.user.username}} on {{message.date.month}}/{{message.date.dayOfMonth}}, {{message.date.hour}}:{{message.date.minute}}</p>
                 <div *ngIf="message.message; else noMessage">
-                    <p>{{message.message}}</p>
+                    <span>{{message.message}}</span>
                 </div>
                 <ng-template #noMessage>
                     <img src="{{message.imageURL}}">
                 </ng-template>
 
-                <span class="chatroomActions" (click)="reportPost(message.id)">Report</span>
-                <span *ngIf="currentUser.admin" (click)="deletePost(message.id)" class="chatroomActions">Delete</span>
+                <button class="chatroomActions btn btn-outline-warning" (click)="reportPost(message.id)">Report</button>
+                <button *ngIf="currentUser.admin" (click)="deletePost(message.id)" class="chatroomActions btn btn-outline-warning">Delete</button>
             </div>
         </div>
 

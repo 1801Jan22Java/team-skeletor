@@ -40,6 +40,7 @@ public class UserDaoImpl implements UserDao {
 
 		user = (User) c.add(Restrictions.eq("username", user.getUsername())).uniqueResult();
 		int id = user.getId();
+		s.close();
 		return id;
 	}
 
@@ -47,7 +48,7 @@ public class UserDaoImpl implements UserDao {
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(User.class);
 		User u = (User) c.add(Restrictions.eq("username", username)).uniqueResult();
-
+		s.close();
 		return u;
 	}
 
@@ -55,6 +56,7 @@ public class UserDaoImpl implements UserDao {
 		Session s = HibernateUtil.getSession();
 		Criteria c = s.createCriteria(User.class);
 		List<User> users = c.add(Restrictions.eq("username", username)).list();
+		s.close();
 		for (User u : users) {
 			u.setUsername(null);
 		}
@@ -100,6 +102,7 @@ public class UserDaoImpl implements UserDao {
 		else {
 			System.out.println("User password not changed");
 		}
+		s.close();
 
 	}
 	
@@ -120,6 +123,7 @@ public class UserDaoImpl implements UserDao {
 		else {
 			System.out.println("User email not changed");
 		}
+		s.close();
 	}
 
 	public void makeUserAdmin(int userID) {
